@@ -1,0 +1,101 @@
+package sample.Classes;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+
+import java.util.ArrayList;
+import javafx.scene.image.*;
+import sample.Classes.Rabbits.AlbinosRabbit;
+import sample.Classes.Rabbits.OdinaryRabbit;
+import sample.Classes.Rabbits.Rabbit;
+import sample.Main;
+
+import java.awt.*;
+
+/*
+* Создать класс Habitat (среда), определяющий размер рабочей области и хранящий массив объектов,
+* с параметрами, заданными вариантом.
+* Предусмотреть в классе метод Update, вызывающийся по таймеру и получающий на вход время, прошедшее от начала симуляции.
+* В данном методе должны генерироваться новые объекты и помещаться в поле визуализации в случайном месте.
+* Визуализация объекта - использовать готовые небольшие картинки;
+
+*
+* */
+public class Habitat {
+
+    // размер и картинка заднего фона
+    private final int WIDTH = 400;
+    private final int HEIGH = 400;
+    private final Image imageBackground = new Image("sample/Images/GreenField.png");
+
+    // картинки для для объектов
+    private final Image imageAlbinosRabbit = new Image("sample/Images/AlbinosRabbit.png");
+    private final Image imageOdinaryRabbit = new Image("sample/Images/OdinaryRabbit.png");
+
+    // массив кроликов
+    private ArrayList<Object> collectionRabbit = new ArrayList<Object>();
+
+
+
+    public Habitat() throws Exception {
+        ImageView imageViewBackground = new ImageView(imageBackground);
+        imageViewBackground.setFitWidth(WIDTH);
+        imageViewBackground.setFitHeight(HEIGH);
+        imageViewBackground.setImage(imageBackground);
+        Main.pane.getChildren().addAll(imageViewBackground);
+    }
+
+
+    //int x =100;
+    //int y = 100;
+
+    public void update(int time) {
+        System.out.println("Habitat.Update; "+"Time: " + time );
+        int N1; // Время рождения обыкновенного кролика(каждые N1 секунды)
+        int P1; // Вероятность % рождения обыкновенного кролика
+
+        int N2; // Время рождения альбиноса кролика(каждые N2 секунды)
+        int K2; // проценнт от общего числа кроликов
+        N1 = 10;
+        P1 = 50;
+        N2 = 20;
+        K2 = 10;
+
+        /*
+            Born Odinary rabbit
+            Обыкновенные кролики рождаются каждые N1 секунд с вероятностью P1.
+         */
+        int randomVariation = (int)Math.floor(Math.random()*100);
+        if (time % N1 == 0 && randomVariation<=P1){
+            ImageView imageView = new ImageView(imageOdinaryRabbit);
+            int x = (int)Math.floor(Math.random()*(this.WIDTH-Rabbit.WIDTH));
+            int y = (int)Math.floor(Math.random()*(this.HEIGH-Rabbit.HEIGHT));
+            OdinaryRabbit OdinaryRabbit = new OdinaryRabbit(imageView,x,y);
+            collectionRabbit.add(OdinaryRabbit);
+
+            String message = new String("Create new Rabbit: " + OdinaryRabbit.typeRabbit);
+            System.out.println(message);
+        }
+        /*
+            Born Albinos rabbit
+            Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K% от общего числа кроликов,
+            в противном случае – не рождаются вовсе.
+         */
+        ;
+        int K22 = Rabbit.countsAllRabbits * K2;
+        if (time % N2 == 0 && Rabbit.countsAllRabbits <= K22 )
+        {
+            ImageView imageView = new ImageView(imageAlbinosRabbit);
+            int x = (int)Math.floor(Math.random()*(this.WIDTH-Rabbit.WIDTH));
+            int y = (int)Math.floor(Math.random()*(this.HEIGH-Rabbit.HEIGHT));
+            AlbinosRabbit albinosRabbit = new AlbinosRabbit(imageView,x,y);
+            collectionRabbit.add(albinosRabbit);
+            String message = new String("Create new Rabbit: " + AlbinosRabbit.typeRabbit);
+            System.out.println(message);
+        }
+    }
+}
