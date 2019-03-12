@@ -24,7 +24,7 @@ public class StopWatch {
                             minutes++;
                             seconds = 0;
                         }
-                        // Use runlater to update object PANE
+                        // Use runLater to update object PANE
                         Platform.runLater(new Runnable(){
                             @Override
                             public void run() {
@@ -79,24 +79,10 @@ public class StopWatch {
         else thread.resume();
         this.seconds = 0;
         this.minutes = 0;
-
-        /*
-        if(isHasBeenRan == false)
-        {
-            isHasBeenRan = true;
-            this.thread.start();
-        }
-
-        else thread.resume();
-        this.seconds = 0;
-        this.minutes = 0;
-        this.isStopped = false;
-        */
     }
 
     public void start(TextField _textField, Object _object) {
         //System.out.println("Stop watch is starting!");
-
         switch (stateOfTimer){
             case RUNNING: {
 

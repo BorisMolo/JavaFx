@@ -53,7 +53,7 @@ public class Controller {
         try {
             startButton.setOnAction(event ->
             {
-                //if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
+                if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
                 {
                     try {
                         fieldTime.setText("");
