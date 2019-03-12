@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -31,27 +32,20 @@ public class Habitat {
     private final int WIDTH = 400;
     private final int HEIGH = 400;
     private final Image imageBackground = new Image("sample/Images/GreenField.png");
+    private Pane pane;
 
-    // картинки для для объектов
+    // картинки для кроликов
     private final Image imageAlbinosRabbit = new Image("sample/Images/AlbinosRabbit.png");
     private final Image imageOdinaryRabbit = new Image("sample/Images/OdinaryRabbit.png");
 
     // массив кроликов
     private ArrayList<Object> collectionRabbit = new ArrayList<Object>();
 
-
-
-    public Habitat() throws Exception {
-        ImageView imageViewBackground = new ImageView(imageBackground);
-        imageViewBackground.setFitWidth(WIDTH);
-        imageViewBackground.setFitHeight(HEIGH);
-        imageViewBackground.setImage(imageBackground);
-        Main.pane.getChildren().addAll(imageViewBackground);
+    public Habitat(Pane _pane) throws Exception {
+        this.pane = _pane;
+        this.pane.getChildren().addAll(createBackGround());
     }
 
-
-    //int x =100;
-    //int y = 100;
 
     public void update(int time) {
         System.out.println("Habitat.Update; "+"Time: " + time );
@@ -65,10 +59,10 @@ public class Habitat {
         N2 = 20;
         K2 = 10;
 
-        /*
-            Born Odinary rabbit
-            Обыкновенные кролики рождаются каждые N1 секунд с вероятностью P1.
-         */
+
+         //   Born Odinary rabbit
+         //   Обыкновенные кролики рождаются каждые N1 секунд с вероятностью P1.
+
         int randomVariation = (int)Math.floor(Math.random()*100);
         if (time % N1 == 0 && randomVariation<=P1){
             ImageView imageView = new ImageView(imageOdinaryRabbit);
@@ -80,12 +74,12 @@ public class Habitat {
             String message = new String("Create new Rabbit: " + OdinaryRabbit.typeRabbit);
             System.out.println(message);
         }
-        /*
-            Born Albinos rabbit
-            Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K% от общего числа кроликов,
-            в противном случае – не рождаются вовсе.
-         */
-        ;
+
+
+        //    Born Albinos rabbit
+        //    Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K% от общего числа кроликов,
+        //    в противном случае – не рождаются вовсе.
+
         int K22 = Rabbit.countsAllRabbits * K2;
         if (time % N2 == 0 && Rabbit.countsAllRabbits <= K22 )
         {
@@ -98,4 +92,19 @@ public class Habitat {
             System.out.println(message);
         }
     }
+
+    private ImageView createBackGround(){
+        ImageView imageViewBackground = new ImageView(imageBackground);
+        imageViewBackground.setFitWidth(WIDTH);
+        imageViewBackground.setFitHeight(HEIGH);
+        return  imageViewBackground;
+    }
+
+    public void removeAll(){
+        Rabbit.countsAllRabbits = 0;
+        AlbinosRabbit.countAlbinosRabbit = 0;
+        OdinaryRabbit.countOdinaryRabbit = 0;
+        this.pane.getChildren().addAll(createBackGround());
+    }
+
 }

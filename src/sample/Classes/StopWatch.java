@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.Service;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class StopWatch {
     Runnable runnable = new Runnable()
@@ -22,6 +23,7 @@ public class StopWatch {
                             minutes++;
                             seconds = 0;
                         }
+                        //TODO: Релизовать синхронизацию ПОТОКОВ!!!
                         // Use runLater to update object PANE
                         Platform.runLater(new Runnable(){
                             @Override
@@ -50,9 +52,9 @@ public class StopWatch {
     private Object object;
 
     // The timer has 3 state: Run;Pause;Stop;
-    private static final int  RUNNING = 1;
-    private static final int  PAUSE = 2;
-    private static final int  STOP = 3;
+    public static final int  RUNNING = 1;
+    public static final int  PAUSE = 2;
+    public static final int  STOP = 3;
 
     // defaul settings
     private int stateOfTimer = -1;
@@ -60,56 +62,71 @@ public class StopWatch {
     public StopWatch(){
         this.seconds = 0;
         this.minutes = 0;
-        this.isHasBeenRan = false;
-        this.isStopped = false;
         this.textField = null;
         thread = new Thread(runnable);
     }
 
     public void start() {
-        System.out.println("Stop watch is starting!");
-
-        if (stateOfTimer == STOP)
-        {
-            stateOfTimer = RUNNING;
-            this.thread.start();
-        }
-        else thread.resume();
-        this.seconds = 0;
-        this.minutes = 0;
-    }
-
-    public void start(TextField _textField, Object _object) {
-        //System.out.println("Stop watch is starting!");
         switch (stateOfTimer){
             case PAUSE:{
                 stateOfTimer = RUNNING;
                 this.thread.resume();
             } break;
             case STOP:{
-                //stateOfTimer = RUNNING;
-                //this.thread.resume();
+                this.seconds = 0;
+                this.minutes = 0;
+                stateOfTimer = RUNNING;
+                this.thread.resume();
             } break;
             default:
                 stateOfTimer = RUNNING;
+                this.thread.start();
+                this.seconds = 0;
+                this.minutes = 0;
+        }
+    }
+
+    public void start(TextField _textField, Object _object) {
+        switch (stateOfTimer){
+            case RUNNING: break;
+            case PAUSE:{
+                stateOfTimer = RUNNING;
+                this.thread.resume();
+                this.textField = _textField;
+                this.object = _object;
+            } break;
+            case STOP:{
+                stateOfTimer = RUNNING;
+                this.seconds = 0;
+                this.minutes = 0;
+                this.thread.resume();
+                this.textField = _textField;
+                this.object = _object;
+            } break;
+            default:
+                stateOfTimer = RUNNING;
+                this.seconds = 0;
+                this.minutes = 0;
                 this.thread.start();
                 this.textField = _textField;
                 this.object = _object;
         }
     }
 
-    public void pause(){
-        stateOfTimer = PAUSE;
-        this.thread.suspend();
-        //this.thread.stop();
+    public void pause() {
+        if (stateOfTimer == RUNNING)
+        {
+            stateOfTimer = PAUSE;
+            this.thread.suspend();
+        }
     }
 
     public void stop(){
-        stateOfTimer = STOP;
-        this.thread.suspend();
-        //this.thread.stop();
-        //this.seconds = 0;
-        //this.minutes = 0;
+        if (stateOfTimer == RUNNING || stateOfTimer == PAUSE){
+            stateOfTimer = STOP;
+            this.thread.suspend();
+        }
+
     }
 
     public int getMinutes() {
@@ -147,5 +164,9 @@ public class StopWatch {
 
     public int getSpeedSimulation() {
         return speedSimulation;
+    }
+
+    public int getStateOfTimer() {
+        return stateOfTimer;
     }
 }

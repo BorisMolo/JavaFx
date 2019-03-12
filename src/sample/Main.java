@@ -1,17 +1,15 @@
 package sample;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
 import sample.Classes.Habitat;
-
-//import sun.security.mscapi.KeyStore;
-
-
-import javafx.animation.*;
 import javafx.scene.layout.*;
 import sample.Classes.Rabbits.AlbinosRabbit;
 import sample.Classes.Rabbits.OdinaryRabbit;
@@ -27,9 +25,28 @@ public class Main extends Application {
     public static Controller controller;
     public static AppController primeAppController;
     public static Pane pane;
-    //Habitat hibitian;
 
+    private void writeKeyCode(KeyCode key) throws Exception {
+        switch (key) {
+            // Время симуляции должно отображаться текстом в области визуализации
+            // и скрываться/показываться по клавише T
+            case T: {
+                System.out.println('T');
 
+            }break;
+            //Симуляция должна запускаться по клавише B
+            case B: {
+                System.out.println('B');
+                primeAppController.appStart();
+            }break;
+            //останавливаться по клавише E
+            case E: {
+                System.out.println('E');
+                primeAppController.appStop();
+            }break;
+        }
+
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -47,12 +64,23 @@ public class Main extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.show();
 
+        mainScene.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event) {
+                try {
+                    writeKeyCode(event.getCode());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
         // get controller
         controller = (Controller)loader.getController();
-        primeAppController = new AppController();
         this.pane = controller.getMainPane();
+        primeAppController = new AppController();
     }
-
 
     public AppController getAppController() {
         return primeAppController;
@@ -60,9 +88,8 @@ public class Main extends Application {
 
     class AppController{
         private Habitat hibitian;
-        private StopWatch timer;
+        private StopWatch stopWatch;
 
-        /*
         private AnimationTimer timer;
         {
             this.timer = new AnimationTimer() {
@@ -88,44 +115,34 @@ public class Main extends Application {
                 }
             };
         }
-        */
 
-        private boolean isStart;
-        long timeStart;
+        int timeStart = 0;
         int time = 0;
         long timePrevios = 0;
 
         private int seconds = 0;
         private int minutes = 0;
 
-        public AppController(){
-            this.isStart = false;
-            timer = new StopWatch();
+        public AppController() throws Exception {
+            stopWatch = new StopWatch();
+            hibitian = new Habitat(Main.pane);
         }
 
         public void appStart() throws Exception {
-            //System.out.println(Rabbit.countsAllRabbits);
-            this.isStart = true;
-            hibitian = new Habitat();
-            timeStart = System.currentTimeMillis();;
+            if(stopWatch.getStateOfTimer() == stopWatch.STOP) hibitian.removeAll();
             time = 0;
             timePrevios = 0;
-            timer.start(controller.getFieldTime(),hibitian);
-
+            stopWatch.start(controller.getFieldTime(), hibitian);
         }
 
         public void appPause(){
-            timer.pause();
+            stopWatch.pause();
         }
 
         public void appStop() throws Exception {
-            this.isStart = false;
             this.seconds = 0;
             this.minutes = 0;
-            Rabbit.countsAllRabbits = 0;
-            AlbinosRabbit.countAlbinosRabbit = 0;
-            OdinaryRabbit.countOdinaryRabbit = 0;
-            timer.stop();
+            stopWatch.stop();
         }
 
         void printTime(){
