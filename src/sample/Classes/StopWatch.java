@@ -13,7 +13,7 @@ public class StopWatch {
         {
 
             System.out.println("StopWatch.Runnable;Run");
-
+//asdasd
             if (stateOfTimer == RUNNING)
             {
                 while (true) {
