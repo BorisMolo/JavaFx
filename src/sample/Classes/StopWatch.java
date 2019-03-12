@@ -11,9 +11,7 @@ public class StopWatch {
         @Override
         public  void run()
         {
-
             System.out.println("StopWatch.Runnable;Run");
-//asdasd
             if (stateOfTimer == RUNNING)
             {
                 while (true) {
@@ -69,7 +67,7 @@ public class StopWatch {
     }
 
     public void start() {
-        System.out.println("stop watch is starting!");
+        System.out.println("Stop watch is starting!");
 
         if (stateOfTimer == STOP)
         {
@@ -84,9 +82,6 @@ public class StopWatch {
     public void start(TextField _textField, Object _object) {
         //System.out.println("Stop watch is starting!");
         switch (stateOfTimer){
-            case RUNNING: {
-
-            } break;
             case PAUSE:{
                 stateOfTimer = RUNNING;
                 this.thread.resume();
