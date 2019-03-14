@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Доработано.">
+      <change afterPath="$PROJECT_DIR$/src/sample/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Habitat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/Rabbit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/Rabbit.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/StopWatch$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/StopWatch$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/StopWatch$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/StopWatch$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/StopWatch.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/StopWatch.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/GreenField.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Main$AppController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Rabbits/AlbinosRabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Rabbits/AlbinosRabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Rabbits/Rabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Rabbits/Rabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/StopWatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/StopWatch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/AlbinosRabbit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/AlbinosRabbit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/OdinaryRabbit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/OdinaryRabbit.class" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,105 +70,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+            <state relative-caret-position="1207">
+              <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
               <folding>
-                <element signature="method#initialize#0;class#Controller#0" />
-                <element signature="e#870#1904#0" />
-                <element signature="e#908#1388#0" />
-                <element signature="e#1111#1374#1" />
-                <element signature="e#1137#1267#0" />
-                <element signature="e#1288#1356#0" />
-                <element signature="e#1427#1639#0" />
-                <element signature="e#1470#1544#0" />
-                <element signature="e#1565#1625#0" />
-                <element signature="e#1679#1892#0" />
-                <element signature="e#1722#1797#0" />
-                <element signature="e#1818#1878#0" />
-                <element signature="e#1933#1990#0" />
-                <element signature="method#getStartButton#0;class#Controller#0" />
-                <element signature="method#getStopButton#0;class#Controller#0" />
-                <element signature="method#getPauseButton#0;class#Controller#0" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2034#2035#0" expanded="true" />
+                <element signature="e#2066#2067#0" expanded="true" />
                 <element signature="method#isIntegerTextField#0;class#Controller#0" />
-                <element signature="e#2372#2472#0" />
-                <element signature="e#2512#2709#0" />
-                <element signature="n#!!block;n#updateFieldTime#0;n#Controller#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/AppController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="49" column="57" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="initializer##0;class#AppController#0" />
-                <element signature="method#appPause#0;class#AppController#0" />
-                <element signature="method#appStop#0;class#AppController#0" />
-                <element signature="e#2243#2244#0" expanded="true" />
-                <element signature="e#2281#2282#0" expanded="true" />
-                <element signature="e#2315#2316#0" expanded="true" />
-                <element signature="n#!!block;n#getShowLog#0;n#AppController#0" />
-                <element signature="e#2350#2351#0" expanded="true" />
-                <element signature="method#makeResultLog#0;class#AppController#0" />
-                <element signature="method#disableButtons#0;class#AppController#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/AlbinosRabbit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="37" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-              <folding>
-                <element signature="method#writeKeyCode#0;class#Main#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Classes/Habitat.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-              <folding>
-                <element signature="method#update#0;class#Habitat#0" />
-                <element signature="e#2059#2083#0" />
-                <element signature="e#2282#2767#1" />
-                <element signature="e#2778#2803#0" />
-                <element signature="e#3097#3581#1" />
-                <element signature="method#removeAll#0;class#Habitat#0" />
-                <element signature="method#createBackGround#0;class#Habitat#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+            <state relative-caret-position="680">
+              <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#968#1265#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -191,11 +98,62 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Classes/StopWatch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state relative-caret-position="322">
+              <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/AppController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="645">
+              <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#438#1266#0" expanded="true" />
+                <element signature="e#1265#1266#0" expanded="true" />
+                <element signature="e#2263#2264#0" expanded="true" />
+                <element signature="e#2301#2302#0" expanded="true" />
+                <element signature="e#2335#2336#0" expanded="true" />
+                <element signature="e#2370#2371#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Classes/Habitat.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="697">
+              <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/IBehaviour.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -230,9 +188,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Lab2" />
       </map>
     </option>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="Lab2" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/sample/Classes/StopWatch.java" root0="FORCE_HIGHLIGHTING" />
@@ -261,9 +232,9 @@
         <option value="$PROJECT_DIR$/src/sample/Controller.java" />
         <option value="$PROJECT_DIR$/src/sample/Classes/Habitat.java" />
         <option value="$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java" />
-        <option value="$PROJECT_DIR$/src/sample/AppController.java" />
         <option value="$PROJECT_DIR$/src/sample/Classes/Rabbits/AlbinosRabbit.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/AppController.java" />
       </list>
     </option>
   </component>
@@ -306,13 +277,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Laboratorys" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Laboratorys" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="Classes" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -334,7 +298,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552564697126" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552565860547" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -469,7 +433,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552394095834</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Доработано.">
+      <created>1552564757425</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1552564757426</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -497,17 +468,17 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298731" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3217993" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3217993" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35409456" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3267974" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32641292" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.22058824" />
+      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.08304498" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
-      <window_info anchor="bottom" id="Event Log" order="12" weight="0.3267974" />
+      <window_info anchor="bottom" id="Event Log" order="12" weight="0.32641292" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.544406" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32843137" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -572,11 +543,38 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="Доработано." />
+    <option name="LAST_COMMIT_MESSAGE" value="Доработано." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -745,13 +743,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/IBehaviour.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/beans/property/ObjectPropertyBase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -862,84 +853,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/primeAppController.java" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/Rabbit.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Classes/StopWatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Classes/Habitat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
-          <folding>
-            <element signature="method#update#0;class#Habitat#0" />
-            <element signature="e#2059#2083#0" />
-            <element signature="e#2282#2767#1" />
-            <element signature="e#2778#2803#0" />
-            <element signature="e#3097#3581#1" />
-            <element signature="method#removeAll#0;class#Habitat#0" />
-            <element signature="method#createBackGround#0;class#Habitat#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-          <folding>
-            <element signature="method#initialize#0;class#Controller#0" />
-            <element signature="e#870#1904#0" />
-            <element signature="e#908#1388#0" />
-            <element signature="e#1111#1374#1" />
-            <element signature="e#1137#1267#0" />
-            <element signature="e#1288#1356#0" />
-            <element signature="e#1427#1639#0" />
-            <element signature="e#1470#1544#0" />
-            <element signature="e#1565#1625#0" />
-            <element signature="e#1679#1892#0" />
-            <element signature="e#1722#1797#0" />
-            <element signature="e#1818#1878#0" />
-            <element signature="e#1933#1990#0" />
-            <element signature="method#getStartButton#0;class#Controller#0" />
-            <element signature="method#getStopButton#0;class#Controller#0" />
-            <element signature="method#getPauseButton#0;class#Controller#0" />
-            <element signature="method#isIntegerTextField#0;class#Controller#0" />
-            <element signature="e#2372#2472#0" />
-            <element signature="e#2512#2709#0" />
-            <element signature="n#!!block;n#updateFieldTime#0;n#Controller#0" />
           </folding>
         </state>
       </provider>
@@ -954,32 +873,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/AppController.java">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="49" column="57" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="initializer##0;class#AppController#0" />
-            <element signature="method#appPause#0;class#AppController#0" />
-            <element signature="method#appStop#0;class#AppController#0" />
-            <element signature="e#2243#2244#0" expanded="true" />
-            <element signature="e#2281#2282#0" expanded="true" />
-            <element signature="e#2315#2316#0" expanded="true" />
-            <element signature="n#!!block;n#getShowLog#0;n#AppController#0" />
-            <element signature="e#2350#2351#0" expanded="true" />
-            <element signature="method#makeResultLog#0;class#AppController#0" />
-            <element signature="method#disableButtons#0;class#AppController#0" />
-          </folding>
+        <state relative-caret-position="502">
+          <caret line="30" column="50" lean-forward="true" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+        <state relative-caret-position="680">
+          <caret line="42" column="13" lean-forward="true" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
           <folding>
-            <element signature="method#writeKeyCode#0;class#Main#0" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#968#1265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Classes/Habitat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="56" column="16" selection-start-line="56" selection-start-column="16" selection-end-line="56" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Classes/Rabbits/IBehaviour.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2034#2035#0" expanded="true" />
+            <element signature="e#2066#2067#0" expanded="true" />
+            <element signature="method#isIntegerTextField#0;class#Controller#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Classes/StopWatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="115" lean-forward="true" selection-start-line="115" selection-end-line="115" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#438#1266#0" expanded="true" />
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#2263#2264#0" expanded="true" />
+            <element signature="e#2301#2302#0" expanded="true" />
+            <element signature="e#2335#2336#0" expanded="true" />
+            <element signature="e#2370#2371#0" expanded="true" />
           </folding>
         </state>
       </provider>
