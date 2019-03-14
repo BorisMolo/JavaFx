@@ -90,10 +90,9 @@ public class Controller {
         return fieldTime;
     }
 
-    public void setFieldTimeText(String message) {
-        TextField textField = this.getFieldTime();
-        textField.setText(message);
-    }
+    public Button getStartButton(){return startButton;}
+    public Button getStopButton(){return stopButton;}
+    public Button getPauseButton(){return pauseButton;}
 
     public Pane getMainPane() {
         return mainPane;

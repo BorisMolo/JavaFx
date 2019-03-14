@@ -20,7 +20,7 @@ public abstract class Rabbit extends Pane implements IBehaviour{
     ImageView imageView;
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
-    static public int countsAllRabbits;
+    static public int countsAllRabbits = 0;
 
     public static String typeRabbit;
 

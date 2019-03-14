@@ -29,25 +29,24 @@ import java.awt.*;
 public class Habitat {
 
     // размер и картинка заднего фона
-    private final int WIDTH = 400;
-    private final int HEIGH = 400;
-    private final Image imageBackground = new Image("sample/Images/GreenField.png");
-    private Pane pane;
+    private static final int WIDTH = 400;
+    private static final int HEIGH = 400;
+    private static final Image imageBackground = new Image("sample/Images/GreenField.png");
+
 
     // картинки для кроликов
-    private final Image imageAlbinosRabbit = new Image("sample/Images/AlbinosRabbit.png");
-    private final Image imageOdinaryRabbit = new Image("sample/Images/OdinaryRabbit.png");
+    private static final Image imageAlbinosRabbit = new Image("sample/Images/AlbinosRabbit.png");
+    private static final Image imageOdinaryRabbit = new Image("sample/Images/OdinaryRabbit.png");
 
     // массив кроликов
-    private ArrayList<Object> collectionRabbit = new ArrayList<Object>();
+    private static ArrayList<Object> collectionRabbit = new ArrayList<Object>();
 
     public Habitat(Pane _pane) throws Exception {
-        this.pane = _pane;
-        this.pane.getChildren().addAll(createBackGround());
+        //this.pane = _pane;
+        Main.controller.getMainPane().getChildren().addAll(createBackGround());
     }
 
-
-    public void update(int time) {
+    public static void update(int time) {
         System.out.println("Habitat.Update; "+"Time: " + time );
         int N1; // Время рождения обыкновенного кролика(каждые N1 секунды)
         int P1; // Вероятность % рождения обыкновенного кролика
@@ -66,8 +65,8 @@ public class Habitat {
         int randomVariation = (int)Math.floor(Math.random()*100);
         if (time % N1 == 0 && randomVariation<=P1){
             ImageView imageView = new ImageView(imageOdinaryRabbit);
-            int x = (int)Math.floor(Math.random()*(this.WIDTH-Rabbit.WIDTH));
-            int y = (int)Math.floor(Math.random()*(this.HEIGH-Rabbit.HEIGHT));
+            int x = (int)Math.floor(Math.random()*(WIDTH-Rabbit.WIDTH));
+            int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
             OdinaryRabbit OdinaryRabbit = new OdinaryRabbit(imageView,x,y);
             collectionRabbit.add(OdinaryRabbit);
 
@@ -84,8 +83,8 @@ public class Habitat {
         if (time % N2 == 0 && Rabbit.countsAllRabbits <= K22 )
         {
             ImageView imageView = new ImageView(imageAlbinosRabbit);
-            int x = (int)Math.floor(Math.random()*(this.WIDTH-Rabbit.WIDTH));
-            int y = (int)Math.floor(Math.random()*(this.HEIGH-Rabbit.HEIGHT));
+            int x = (int)Math.floor(Math.random()*(WIDTH-Rabbit.WIDTH));
+            int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
             AlbinosRabbit albinosRabbit = new AlbinosRabbit(imageView,x,y);
             collectionRabbit.add(albinosRabbit);
             String message = new String("Create new Rabbit: " + AlbinosRabbit.typeRabbit);
@@ -93,18 +92,18 @@ public class Habitat {
         }
     }
 
+    public void removeAll(){
+        Rabbit.countsAllRabbits = 0;
+        AlbinosRabbit.countAlbinosRabbit = 0;
+        OdinaryRabbit.countOdinaryRabbit = 0;
+        Main.controller.getMainPane().getChildren().addAll(createBackGround());
+    }
+
     private ImageView createBackGround(){
         ImageView imageViewBackground = new ImageView(imageBackground);
         imageViewBackground.setFitWidth(WIDTH);
         imageViewBackground.setFitHeight(HEIGH);
         return  imageViewBackground;
-    }
-
-    public void removeAll(){
-        Rabbit.countsAllRabbits = 0;
-        AlbinosRabbit.countAlbinosRabbit = 0;
-        OdinaryRabbit.countOdinaryRabbit = 0;
-        this.pane.getChildren().addAll(createBackGround());
     }
 
 }

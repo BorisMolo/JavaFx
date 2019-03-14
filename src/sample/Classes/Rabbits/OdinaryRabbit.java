@@ -16,14 +16,14 @@ public class OdinaryRabbit extends Rabbit {
         super(_imageView_rabbit);
         this.setPosition(x,y);
         countOdinaryRabbit++;
-        Main.pane.getChildren().addAll(this.imageView);
+        Main.controller.getMainPane().getChildren().addAll(this.imageView);
         this.typeRabbit = "Odinary Rabbit";
     }
 
     public OdinaryRabbit(ImageView _imageView_rabbit){
         super(_imageView_rabbit);
         countOdinaryRabbit++;
-        Main.pane.getChildren().addAll(this.imageView);
+        Main.controller.getMainPane().getChildren().addAll(this.imageView);
         this.typeRabbit = "Odinary Rabbit";
     }
 

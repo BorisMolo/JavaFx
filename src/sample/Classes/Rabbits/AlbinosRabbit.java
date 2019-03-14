@@ -16,14 +16,14 @@ public class AlbinosRabbit extends Rabbit {
         super(_imageView_rabbit);
         this.setPosition(x,y);
         countAlbinosRabbit++;
-        Main.pane.getChildren().addAll(this.imageView);
+        Main.controller.getMainPane().getChildren().addAll(this.imageView);
         this.typeRabbit = "Albinos Rabbit";
     }
 
     public AlbinosRabbit(ImageView _imageView_rabbit){
         super(_imageView_rabbit);
         countAlbinosRabbit++;
-        Main.pane.getChildren().addAll(this.imageView);
+        Main.controller.getMainPane().getChildren().addAll(this.imageView);
         this.typeRabbit = "Albinos Rabbit";
     }
 

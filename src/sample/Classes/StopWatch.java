@@ -5,6 +5,7 @@ import javafx.concurrent.Task;
 import javafx.concurrent.Service;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import sample.Main;
 
 public class StopWatch {
     Runnable runnable = new Runnable()
@@ -12,7 +13,6 @@ public class StopWatch {
         @Override
         public  void run()
         {
-            System.out.println("StopWatch.Runnable;Run");
             if (stateOfTimer == RUNNING)
             {
                 while (true) {
@@ -28,9 +28,8 @@ public class StopWatch {
                         Platform.runLater(new Runnable(){
                             @Override
                             public void run() {
-                                //System.out.println("Min: " + minutes + " Second: " + seconds);
-                                if (textField != null) textField.setText(minutes + ":" +seconds);
-                                updateObject(seconds);
+                                Main.controller.getFieldTime().setText(minutes + ":" +seconds);
+                                Habitat.update(seconds);
                             }
                         });
                     } catch (Exception e) {
@@ -44,12 +43,8 @@ public class StopWatch {
 
     private int seconds;
     private int minutes;
-    private boolean isStopped;
-    private boolean isHasBeenRan;
     private int speedSimulation = 100;
     private Thread thread;
-    private TextField textField;
-    private Object object;
 
     // The timer has 3 state: Run;Pause;Stop;
     public static final int  RUNNING = 1;
@@ -62,7 +57,6 @@ public class StopWatch {
     public StopWatch(){
         this.seconds = 0;
         this.minutes = 0;
-        this.textField = null;
         thread = new Thread(runnable);
     }
 
@@ -92,24 +86,18 @@ public class StopWatch {
             case PAUSE:{
                 stateOfTimer = RUNNING;
                 this.thread.resume();
-                this.textField = _textField;
-                this.object = _object;
             } break;
             case STOP:{
                 stateOfTimer = RUNNING;
                 this.seconds = 0;
                 this.minutes = 0;
                 this.thread.resume();
-                this.textField = _textField;
-                this.object = _object;
             } break;
             default:
                 stateOfTimer = RUNNING;
                 this.seconds = 0;
                 this.minutes = 0;
                 this.thread.start();
-                this.textField = _textField;
-                this.object = _object;
         }
     }
 
@@ -137,10 +125,6 @@ public class StopWatch {
         return seconds;
     }
 
-    public boolean isiStopped() {
-        return isStopped;
-    }
-
     public String secondToString(){
 
         return  Integer.toString(getSeconds());
@@ -148,14 +132,6 @@ public class StopWatch {
 
     public String minuteToString(){
         return  Integer.toString(getMinutes());
-    }
-
-    // update this.object per time
-    private void updateObject(int time){
-        if(this.object instanceof Habitat) {
-            Habitat habitat = (Habitat)this.object;
-            habitat.update(time);
-        }
     }
 
     public void setSpeedSimulation(int speedSimulation) {
