@@ -47,7 +47,7 @@ public class Habitat {
     }
 
     public static void update(int time) {
-        System.out.println("Habitat.Update; "+"Time: " + time );
+        //System.out.println("Habitat.Update; "+"Time: " + time );
         int N1; // Время рождения обыкновенного кролика(каждые N1 секунды)
         int P1; // Вероятность % рождения обыкновенного кролика
 

@@ -30,6 +30,7 @@ public class StopWatch {
                             public void run() {
                                 Main.controller.getFieldTime().setText(minutes + ":" +seconds);
                                 Habitat.update(seconds);
+                                updateTime();
                             }
                         });
                     } catch (Exception e) {
@@ -145,4 +146,6 @@ public class StopWatch {
     public int getStateOfTimer() {
         return stateOfTimer;
     }
+
+    public int updateTime( ) {return this.seconds;}
 }

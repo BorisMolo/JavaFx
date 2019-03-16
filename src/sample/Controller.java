@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TextField;
+import sample.Classes.Windows.WindowError;
 
 
 public class Controller {
@@ -45,14 +46,12 @@ public class Controller {
     @FXML
     private Button pauseButton;
 
-    private String erroeMessage;
-
     @FXML
     void initialize() {
         try {
             startButton.setOnAction(event ->
             {
-                //if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
+                if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
                 {
                     try {
                         fieldTime.setText("");
@@ -99,13 +98,43 @@ public class Controller {
     }
 
     private boolean isIntegerTextField(TextField textField){
+        String erroeMessage;
         try{
             int number = Integer.parseInt(textField.getText());
             return true;
         }
         catch (NumberFormatException e){
-            erroeMessage = "You can not enter " + e.getMessage()+" as a integer number; " + textField.toString();
-            System.out.println(erroeMessage);
+            //System.out.println(erroeMessage);
+            //System.out.println(textField.getId());
+            switch (textField.getId()){
+                case "fieldTimeRabbitOdinaty":
+                    {
+                        erroeMessage =
+                                "Значание в поле: \n"
+                                + "\"Время рождения кролика Обыкновенного\" \n"
+                                + "должно быть не пустим и целочисленным";
+                        WindowError windowError = new WindowError("Ошибка!", erroeMessage);
+                    } break;
+                case "fieldTimeRabbitAlbinos":
+                {
+                    erroeMessage =
+                            "Значание в поле: \n"
+                            + "\"Время рождения кролика Альбиноса\" \n"
+                            + "должно быть не пустим и целочисленным";
+                    WindowError windowError = new WindowError("Ошибка!", erroeMessage);
+                } break;
+                case "fieldVariationRabbitAlbinos":
+                {
+                    erroeMessage =
+                            "Значание в поле: \n"
+                            + "\"Вероятность рождениякролика Альбиносао\" \n"
+                            + "должно быть не пустим и целочисленным";
+                    WindowError windowError = new WindowError("Ошибка!", erroeMessage);
+                } break;
+                default: break;
+            }
+
+
             return false;
         }
 
