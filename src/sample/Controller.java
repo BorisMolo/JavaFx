@@ -1,10 +1,15 @@
 package sample;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.TextField;
@@ -46,16 +51,19 @@ public class Controller {
     @FXML
     private Button pauseButton;
 
+    private Scene mainScene;
+
     @FXML
-    void initialize() {
+    void initialize(AppController primeAppController) {
         try {
+
             startButton.setOnAction(event ->
             {
                 if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
                 {
                     try {
                         fieldTime.setText("");
-                        Main.primeAppController.appStart();
+                        primeAppController.appStart();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -65,7 +73,7 @@ public class Controller {
             stopButton.setOnAction(event ->
             {
                 try {
-                    Main.primeAppController.appStop();
+                    primeAppController.appStop();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -74,10 +82,22 @@ public class Controller {
             pauseButton.setOnAction(event ->
             {
                 try {
-                    Main.primeAppController.appPause();
+                    primeAppController.appPause();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            });
+
+            mainStage.setOnKeyPressed(new EventHandler<KeyEvent>(){
+                @Override
+                public void handle(KeyEvent event) {
+                    try {
+                        writeKeyCode(event.getCode());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
             });
         }
         catch (Exception e ){
@@ -95,6 +115,22 @@ public class Controller {
 
     public Pane getMainPane() {
         return mainPane;
+    }
+
+    public TextField getFieldTimeRabbitAlbinos() {
+        return fieldTimeRabbitAlbinos;
+    }
+
+    public TextField getFieldTimeRabbitOdinaty() {
+        return fieldTimeRabbitOdinaty;
+    }
+
+    public TextField getFieldVariationRabbitAlbinos() {
+        return fieldVariationRabbitAlbinos;
+    }
+
+    public int getTextTextFieldValue(TextField textField){
+        return Integer.parseInt(textField.getText());
     }
 
     private boolean isIntegerTextField(TextField textField){
@@ -140,7 +176,44 @@ public class Controller {
 
     }
 
-    void updateFieldTime(String message){
-        this.fieldTime.setText(message);
+    private void writeKeyCode(KeyCode key) throws Exception {
+        switch (key) {
+            // Время симуляции должно отображаться текстом в области визуализации
+            // и скрываться/показываться по клавише T
+            case T: {
+                System.out.print("Typed the key: T; ");
+                if(Main.primeAppController.getShowLog() == false)
+                {
+                    System.out.println("Logs has been activated");
+                    Main.primeAppController.setShowLog(true);
+                    //Main.controller.getFieldTime().setVisible(true);
+                }
+                else
+                {
+                    System.out.println("Logs has been diactivated");
+                    Main.primeAppController.setShowLog(false);
+                    //Main.controller.getFieldTime().setVisible(false);
+                }
+            }break;
+            //Симуляция должна запускаться по клавише B
+            case B: {
+                System.out.println("Typed the key: B; ");
+
+                if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
+                {
+                    try {
+                        fieldTime.setText("");
+                        Main.primeAppController.appStart();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }break;
+            //останавливаться по клавише E
+            case E: {
+                System.out.println("Typed the key: E; ");
+                Main.primeAppController.appStop();
+            }break;
+        }
     }
 }

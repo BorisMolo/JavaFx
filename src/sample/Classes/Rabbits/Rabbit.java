@@ -61,6 +61,9 @@ public abstract class Rabbit extends Pane implements IBehaviour{
         this.setY(y);
     }
 
+    public ImageView getImageView(){
+        return this.imageView;
+    }
     /*
         Could born new rabbit? It depends on time.
      */

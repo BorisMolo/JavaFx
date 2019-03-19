@@ -28,8 +28,8 @@ public class StopWatch {
                         Platform.runLater(new Runnable(){
                             @Override
                             public void run() {
-                                Main.controller.getFieldTime().setText(minutes + ":" +seconds);
-                                Habitat.update(seconds);
+                                //Main.controller.getFieldTime().setText(minutes + ":" +seconds);
+                                //Habitat.update(seconds);
                                 updateTime();
                             }
                         });
