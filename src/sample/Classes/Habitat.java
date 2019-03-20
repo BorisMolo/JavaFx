@@ -52,8 +52,8 @@ public class Habitat {
         if (canBornOdinaryRabbit(N1,P1,time))
             return makeOdinaryRabbit();
 
-        if (canBornAllRabbitsRabbit(N2,K2,time))
-            return AllRabbitsRabbit();
+        if (canBornAlbinosRabbit(N2,K2,time))
+            return makeAlbinosRabbit();
 
         return this.getImageViewBackground();
     }
@@ -75,10 +75,9 @@ public class Habitat {
         return odinaryRabbit.getImageView();
     }
 
-    //    Born Albinos rabbit
     //    Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K% от общего числа кроликов,
     //    в противном случае – не рождаются вовсе.
-    private boolean canBornAllRabbitsRabbit(int N2,int K2,int time){
+    private boolean canBornAlbinosRabbit(int N2,int K2,int time){
         if(time % N2 == 0 && Rabbit.countsAllRabbits <= Rabbit.countsAllRabbits * K2)
         {
             return true;
@@ -86,7 +85,7 @@ public class Habitat {
         return false;
     }
 
-    private ImageView AllRabbitsRabbit(){
+    private ImageView makeAlbinosRabbit(){
         ImageView imageView = new ImageView(imageAlbinosRabbit);
         int x = (int)Math.floor(Math.random()*(WIDTH-Rabbit.WIDTH));
         int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
@@ -102,13 +101,6 @@ public class Habitat {
         OdinaryRabbit.countOdinaryRabbit = 0;
     }
 
-    public ImageView getImageViewBackground() {
-        ImageView imageViewBackground = new ImageView(imageBackground);
-        imageViewBackground.setFitWidth(WIDTH);
-        imageViewBackground.setFitHeight(HEIGH);
-        return imageViewBackground;
-    }
-
     private void showLog(Object object){
         String message = new String();
         if (object instanceof AlbinosRabbit) {
@@ -118,5 +110,12 @@ public class Habitat {
             message = "Create new Rabbit: " + OdinaryRabbit.typeRabbit;
         }
         System.out.println(message);
+    }
+
+    public ImageView getImageViewBackground() {
+        ImageView imageViewBackground = new ImageView(imageBackground);
+        imageViewBackground.setFitWidth(WIDTH);
+        imageViewBackground.setFitHeight(HEIGH);
+        return imageViewBackground;
     }
 }
