@@ -7,14 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import sample.AppController;
-import sample.Main;
 
 public class WindowError extends Window  {
     private Button okButton = new Button("Ок");
 
-    public WindowError(String titleOfWindow, String message){
-        super(titleOfWindow);
+    public WindowError(String message){
+        super("Ошибка!");
         initActtionsButtons();
         Scene scene = new Scene(createInterfaceWindow(message));
         window.setScene(scene);

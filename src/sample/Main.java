@@ -17,19 +17,14 @@ public class Main extends Application {
         launch(args);
     }
 
-
-    public static AppController primeAppController;
+    private AppManager appManager;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        // load
-        // FXML file and set it to root
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = mainLoader.load();
         primaryStage.setTitle("FirstLab");
-
-        primeAppController = new AppController(mainLoader);
-
+        appManager = new AppManager(mainLoader);
         Scene scene = new Scene(root, 600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();

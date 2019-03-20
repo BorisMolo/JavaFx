@@ -86,7 +86,6 @@ public class Habitat {
         return false;
     }
 
-
     private ImageView AllRabbitsRabbit(){
         ImageView imageView = new ImageView(imageAlbinosRabbit);
         int x = (int)Math.floor(Math.random()*(WIDTH-Rabbit.WIDTH));
@@ -103,7 +102,7 @@ public class Habitat {
         OdinaryRabbit.countOdinaryRabbit = 0;
     }
 
-    public static ImageView getImageViewBackground() {
+    public ImageView getImageViewBackground() {
         ImageView imageViewBackground = new ImageView(imageBackground);
         imageViewBackground.setFitWidth(WIDTH);
         imageViewBackground.setFitHeight(HEIGH);

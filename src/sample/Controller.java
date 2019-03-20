@@ -37,16 +37,16 @@ public class Controller {
     private TextField fieldTime;
 
     @FXML
-    private TextField fieldTimeRabbitOdinaty;
+    private TextField timeBornRabbitOdinaty;
 
     @FXML
-    private TextField fieldTimeRabbitAlbinos;
+    private TextField timeBornRabbitAlbinos;
 
     @FXML
     private Pane mainPane;
 
     @FXML
-    private TextField fieldVariationRabbitAlbinos;
+    private TextField variationRabbitAlbinos;
 
     @FXML
     private Button pauseButton;
@@ -54,156 +54,130 @@ public class Controller {
     private Scene mainScene;
 
     @FXML
-    void initialize(AppController primeAppController) {
+    void initialize(AppManager appManager) {
         try {
-
-            startButton.setOnAction(event ->
-            {
-                if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
-                {
-                    try {
-                        fieldTime.setText("");
-                        primeAppController.appStart();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-
-            stopButton.setOnAction(event ->
-            {
-                try {
-                    primeAppController.appStop();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-            pauseButton.setOnAction(event ->
-            {
-                try {
-                    primeAppController.appPause();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-            mainStage.setOnKeyPressed(new EventHandler<KeyEvent>(){
-                @Override
-                public void handle(KeyEvent event) {
-                    try {
-                        writeKeyCode(event.getCode());
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            });
+            initListeners(appManager);
         }
         catch (Exception e ){
-            System.out.println(e.toString());
+            WindowError windowError = new WindowError(e.toString());
         }
     }
 
-    public TextField getFieldTime() {
-        return fieldTime;
-    }
+    private void initListeners(AppManager appManager){
+        startButton.setOnAction(event ->
+        {
+            if (checkBook())
+            {
+                try {
+                    fieldTime.setText("");
+                    appManager.appStart();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-    public Button getStartButton(){return startButton;}
-    public Button getStopButton(){return stopButton;}
-    public Button getPauseButton(){return pauseButton;}
+        stopButton.setOnAction(event ->
+        {
+            try {
+                appManager.appStop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
-    public Pane getMainPane() {
-        return mainPane;
-    }
+        pauseButton.setOnAction(event ->
+        {
+            try {
+                appManager.appPause();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
-    public TextField getFieldTimeRabbitAlbinos() {
-        return fieldTimeRabbitAlbinos;
-    }
-
-    public TextField getFieldTimeRabbitOdinaty() {
-        return fieldTimeRabbitOdinaty;
-    }
-
-    public TextField getFieldVariationRabbitAlbinos() {
-        return fieldVariationRabbitAlbinos;
-    }
-
-    public int getTextTextFieldValue(TextField textField){
-        return Integer.parseInt(textField.getText());
+        mainStage.setOnKeyPressed(new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event) {
+                try {
+                    writeKeyCode(event.getCode(),appManager);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private boolean isIntegerTextField(TextField textField){
-        String erroeMessage;
         try{
-            int number = Integer.parseInt(textField.getText());
+            Integer.parseInt(textField.getText());
             return true;
         }
         catch (NumberFormatException e){
-            //System.out.println(erroeMessage);
-            //System.out.println(textField.getId());
-            switch (textField.getId()){
-                case "fieldTimeRabbitOdinaty":
-                    {
-                        erroeMessage =
-                                "Значание в поле: \n"
-                                + "\"Время рождения кролика Обыкновенного\" \n"
-                                + "должно быть не пустим и целочисленным";
-                        WindowError windowError = new WindowError("Ошибка!", erroeMessage);
-                    } break;
-                case "fieldTimeRabbitAlbinos":
-                {
-                    erroeMessage =
-                            "Значание в поле: \n"
-                            + "\"Время рождения кролика Альбиноса\" \n"
-                            + "должно быть не пустим и целочисленным";
-                    WindowError windowError = new WindowError("Ошибка!", erroeMessage);
-                } break;
-                case "fieldVariationRabbitAlbinos":
-                {
-                    erroeMessage =
-                            "Значание в поле: \n"
-                            + "\"Вероятность рождениякролика Альбиносао\" \n"
-                            + "должно быть не пустим и целочисленным";
-                    WindowError windowError = new WindowError("Ошибка!", erroeMessage);
-                } break;
-                default: break;
-            }
-
-
+            showDialogError(textField);
             return false;
         }
-
     }
 
-    private void writeKeyCode(KeyCode key) throws Exception {
+    private boolean showDialogError(TextField textField) {
+        String erroeMessage;
+        if(textField.getId() == timeBornRabbitOdinaty.getId()){
+            erroeMessage =
+                    "Значание в поле: \n"
+                            + "\"Время рождения кролика Обыкновенного\" \n"
+                            + "должно быть не пустим и целочисленным";
+            WindowError windowError = new WindowError(erroeMessage);
+            textField.requestFocus();
+            return false;
+        }
+        if(textField.getId() == timeBornRabbitAlbinos.getId()){
+            erroeMessage =
+                    "Значание в поле: \n"
+                            + "\"Время рождения кролика Альбиноса\" \n"
+                            + "должно быть не пустим и целочисленным";
+            textField.requestFocus();
+            WindowError windowError = new WindowError(erroeMessage);
+            return false;
+        }
+        if (textField.getId() == variationRabbitAlbinos.getId()){
+            erroeMessage =
+                    "Значание в поле: \n"
+                            + "\"Вероятность рождениякролика Альбиносао\" \n"
+                            + "должно быть не пустим и целочисленным";
+            WindowError windowError = new WindowError(erroeMessage);
+            textField.requestFocus();
+            return false;
+        }
+        return false;
+    }
+
+    private void writeKeyCode(KeyCode key, AppManager appManager) throws Exception {
         switch (key) {
             // Время симуляции должно отображаться текстом в области визуализации
             // и скрываться/показываться по клавише T
             case T: {
                 System.out.print("Typed the key: T; ");
-                if(Main.primeAppController.getShowLog() == false)
+                if(appManager.getShowLog() == false)
                 {
                     System.out.println("Logs has been activated");
-                    Main.primeAppController.setShowLog(true);
-                    //Main.controller.getFieldTime().setVisible(true);
+                    appManager.setShowLog(true);
+                    fieldTime.setVisible(true);
                 }
                 else
                 {
                     System.out.println("Logs has been diactivated");
-                    Main.primeAppController.setShowLog(false);
-                    //Main.controller.getFieldTime().setVisible(false);
+                    appManager.setShowLog(false);
+                    fieldTime.setVisible(false);
                 }
             }break;
             //Симуляция должна запускаться по клавише B
             case B: {
                 System.out.println("Typed the key: B; ");
 
-                if (isIntegerTextField(fieldTimeRabbitOdinaty) &&  isIntegerTextField(fieldTimeRabbitAlbinos) && isIntegerTextField(fieldVariationRabbitAlbinos))
+                if (checkBook())
                 {
                     try {
                         fieldTime.setText("");
-                        Main.primeAppController.appStart();
+                        appManager.appStart();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -212,8 +186,30 @@ public class Controller {
             //останавливаться по клавише E
             case E: {
                 System.out.println("Typed the key: E; ");
-                Main.primeAppController.appStop();
+                appManager.appStop();
             }break;
         }
+    }
+
+    private Boolean checkBook(){
+        if(
+            isIntegerTextField(timeBornRabbitOdinaty) &&
+            isIntegerTextField(timeBornRabbitAlbinos) &&
+            isIntegerTextField(variationRabbitAlbinos)
+            )
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public TextField getFieldTime() {
+        return fieldTime;
+    }
+    public Button getStartButton(){return startButton;}
+    public Button getStopButton(){return stopButton;}
+    public Button getPauseButton(){return pauseButton;}
+    public Pane getMainPane() {
+        return mainPane;
     }
 }

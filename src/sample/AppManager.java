@@ -10,7 +10,7 @@ import sample.Classes.Rabbits.Rabbit;
 import sample.Classes.StopWatch;
 import sample.Classes.Windows.WindowInformation;
 
-public class AppController{
+public class AppManager{
     private Habitat habitat;
     private boolean showLog = true;
     private Controller controller;
@@ -63,7 +63,7 @@ public class AppController{
     // default settings
     private int stateOfTimer = -1;
 
-    public AppController(FXMLLoader mainLoader) throws Exception {
+    public AppManager(FXMLLoader mainLoader) throws Exception {
         this.controller = (Controller)mainLoader.getController();
         controller.initialize(this);
         habitat = new Habitat();
@@ -117,14 +117,6 @@ public class AppController{
         }
     }
 
-    public void setShowLog(boolean showLog) {
-        this.showLog = showLog;
-    }
-
-    public boolean getShowLog(){
-        return this.showLog;
-    }
-
     private String makeResultLog(){
         return new String(
                 "Total Rabbits: " + Rabbit.countsAllRabbits +
@@ -161,10 +153,16 @@ public class AppController{
         }
     }
 
+    public void setShowLog(boolean showLog) {
+        this.showLog = showLog;
+    }
+    public boolean getShowLog(){
+        return this.showLog;
+    }
+
     public int getStateOfTimer() {
         return stateOfTimer;
     }
-
     public void setStateOfTimer(int _stateOfTimer) {
         this.stateOfTimer = _stateOfTimer;
     }

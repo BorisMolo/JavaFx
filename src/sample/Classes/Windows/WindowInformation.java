@@ -5,7 +5,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
-import sample.AppController;
+import sample.AppManager;
 
 
 
@@ -14,20 +14,20 @@ public class WindowInformation extends Window {
     private Button okButton = new Button("Ок");
     private Button cancelButton = new Button("Отмена");
 
-    public WindowInformation(String titleOfWindow, String mesageTextArea, AppController primeAppController) {
+    public WindowInformation(String titleOfWindow, String mesageTextArea, AppManager appManager) {
         super(titleOfWindow);
-        initActtionsButtons(primeAppController);
+        initActtionsButtons(appManager);
         Scene scene = new Scene(createInterfaceWindow(mesageTextArea));
         window.setScene(scene);
         window.show();
     }
 
-    private void initActtionsButtons(AppController primeAppController){
+    private void initActtionsButtons(AppManager appManager){
         cancelButton.setOnAction(event -> {
             try {
                 //primeAppController.setStateOfTimer(primeAppController.PAUSE);
-                primeAppController.appStart();
-                primeAppController.disableButtons(primeAppController.getStateOfTimer());
+                appManager.appStart();
+                appManager.disableButtons(appManager.getStateOfTimer());
                 window.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -35,10 +35,10 @@ public class WindowInformation extends Window {
         });
         okButton.setOnAction(event -> {
             try {
-                primeAppController.setStateOfTimer(AppController.STOP);
-                primeAppController.appStop();
-                primeAppController.getHabitat().removeAll();
-                primeAppController.disableButtons(primeAppController.getStateOfTimer());
+                appManager.setStateOfTimer(appManager.STOP);
+                appManager.appStop();
+                appManager.getHabitat().removeAll();
+                appManager.disableButtons(appManager.getStateOfTimer());
                 window.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -46,8 +46,8 @@ public class WindowInformation extends Window {
         });
         window.setOnCloseRequest(event -> {
             try {
-                primeAppController.appStart();
-                primeAppController.disableButtons(primeAppController.getStateOfTimer());
+                appManager.appStart();
+                appManager.disableButtons(appManager.getStateOfTimer());
                 window.close();
             } catch (Exception e) {
                 e.printStackTrace();
