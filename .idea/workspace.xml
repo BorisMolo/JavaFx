@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Доработано.">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Рефакторинг 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Habitat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Habitat.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/OdinaryRabbit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Classes/Rabbits/OdinaryRabbit.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/JafaFxText/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/JafaFxText/sample/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AppManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Classes/Habitat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Habitat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Rabbits/OdinaryRabbit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Windows/WindowError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Windows/WindowError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Classes/Windows/WindowInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Classes/Windows/WindowInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/sample.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -150,16 +143,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Classes/Habitat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="101" column="45" selection-start-line="101" selection-start-column="45" selection-end-line="101" selection-end-column="45" />
+            <state relative-caret-position="118">
+              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
               <folding>
                 <element signature="method#Habitat#0;class#Habitat#0" />
-                <element signature="method#update#0;class#Habitat#0" />
                 <element signature="method#canBornOdinaryRabbit#0;class#Habitat#0" />
                 <element signature="method#makeOdinaryRabbit#0;class#Habitat#0" />
                 <element signature="method#canBornAllRabbitsRabbit#0;class#Habitat#0" />
                 <element signature="e#3315#3351#1" />
-                <element signature="method#AllRabbitsRabbit#0;class#Habitat#0" />
                 <element signature="method#showLog#0;class#Habitat#0" />
                 <element signature="e#4386#4469#1" />
                 <element signature="e#4515#4598#1" />
@@ -420,7 +411,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553097888896" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553098140542" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -570,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1552565873976</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Рефакторинг 2">
+      <created>1553097981402</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1553097981402</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -589,7 +587,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21255673" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21255673" />
       <window_info id="Structure" order="1" weight="0.25340393" />
       <window_info id="Favorites" order="2" weight="0.3290469" />
       <window_info id="Designer" order="3" />
@@ -598,13 +596,13 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298731" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.31535947" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31535947" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35409456" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3251634" />
       <window_info anchor="bottom" id="Application Servers" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.04901961" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.16013072" />
       <window_info anchor="bottom" id="Problems" order="9" />
       <window_info anchor="bottom" id="Changes" order="10" />
       <window_info anchor="bottom" id="Profiler" order="11" />
@@ -794,7 +792,8 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="test" />
     <MESSAGE value="Доработано." />
-    <option name="LAST_COMMIT_MESSAGE" value="Доработано." />
+    <MESSAGE value="Рефакторинг 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг 2" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -1260,16 +1259,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Classes/Habitat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="101" column="45" selection-start-line="101" selection-start-column="45" selection-end-line="101" selection-end-column="45" />
+        <state relative-caret-position="118">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
           <folding>
             <element signature="method#Habitat#0;class#Habitat#0" />
-            <element signature="method#update#0;class#Habitat#0" />
             <element signature="method#canBornOdinaryRabbit#0;class#Habitat#0" />
             <element signature="method#makeOdinaryRabbit#0;class#Habitat#0" />
             <element signature="method#canBornAllRabbitsRabbit#0;class#Habitat#0" />
             <element signature="e#3315#3351#1" />
-            <element signature="method#AllRabbitsRabbit#0;class#Habitat#0" />
             <element signature="method#showLog#0;class#Habitat#0" />
             <element signature="e#4386#4469#1" />
             <element signature="e#4515#4598#1" />
