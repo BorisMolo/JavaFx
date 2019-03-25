@@ -221,4 +221,20 @@ public class Controller {
     public Pane getMainPane() {
         return mainPane;
     }
+
+    public int getValueSliderVariationBornRabbitAlbinos() {
+        return (int)sliderVariationBornRabbitAlbinos.getValue();
+    }
+
+    public int getValueSliderVariationBornRabbitOdinary() {
+        return (int)sliderVariationBornRabbitOdinary.getValue();
+    }
+
+    public int getValueTimeBornRabbitOdinaty() {
+        return Integer.parseInt(timeBornRabbitOdinaty.getText());
+    }
+
+    public int getValueTimeBornRabbitAlbinos() {
+        return Integer.parseInt(timeBornRabbitAlbinos.getText());
+    }
 }

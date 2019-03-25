@@ -3,6 +3,7 @@ package sample.Classes;
 import javafx.scene.image.Image;
 import java.util.ArrayList;
 import javafx.scene.image.*;
+import javafx.scene.layout.Pane;
 import sample.Classes.Rabbits.AlbinosRabbit;
 import sample.Classes.Rabbits.OdinaryRabbit;
 import sample.Classes.Rabbits.Rabbit;
@@ -31,31 +32,28 @@ public class Habitat {
     private static final Image imageAlbinosRabbit = new Image("sample/Images/AlbinosRabbit.png");
     private static final Image imageOdinaryRabbit = new Image("sample/Images/OdinaryRabbit.png");
 
+    private int N1; // Время рождения обыкновенного кролика(каждые N1 секунды)
+    private int P1; // Вероятность % рождения обыкновенного кролика
+    private int N2; // Время рождения альбиноса кролика(каждые N2 секунды)
+    private int K2; // проценнт от общего числа кроликов
     // массив кроликов
     private ArrayList<Object> collectionRabbit = new ArrayList<Object>();
 
     public Habitat(){
     }
+    public Habitat(int N1,int P1,int N2,int K2){
+        this.N1 = N1;
+        this.P1 = P1;
+        this.N2 = N2;
+        this.K2 = K2;
+    }
 
-    public ImageView update(int time) {
-        int N1; // Время рождения обыкновенного кролика(каждые N1 секунды)
-        int P1; // Вероятность % рождения обыкновенного кролика
-
-        int N2; // Время рождения альбиноса кролика(каждые N2 секунды)
-        int K2; // проценнт от общего числа кроликов
-
-        N1 = 1;//Main.controller.getTextTextFieldValue(Main.controller.getFieldTimeRabbitOdinaty());
-        P1 = 50;
-        N2 = 1;//Main.controller.getTextTextFieldValue(Main.controller.getFieldTimeRabbitAlbinos());
-        K2 = 2;//Main.controller.getTextTextFieldValue(Main.controller.getFieldVariationRabbitAlbinos());
-
+    public void update(int time, Pane pane) {
         if (canBornOdinaryRabbit(N1,P1,time))
-            return makeOdinaryRabbit();
+            pane.getChildren().addAll(makeOdinaryRabbit());
 
         if (canBornAlbinosRabbit(N2,K2,time))
-            return makeAlbinosRabbit();
-
-        return this.getImageViewBackground();
+            pane.getChildren().addAll( makeAlbinosRabbit());
     }
 
     //   Обыкновенные кролики рождаются каждые N1 секунд с вероятностью P1.
@@ -100,6 +98,22 @@ public class Habitat {
         AlbinosRabbit.countAlbinosRabbit = 0;
         OdinaryRabbit.countOdinaryRabbit = 0;
     }
+
+
+
+    public void setN1(int n1) {
+        N1 = n1;
+    }
+    public void setP1(int p1) {
+        P1 = p1;
+    }
+    public void setN2(int n2) {
+        N2 = n2;
+    }
+    public void setK2(int k2) {
+        K2 = k2;
+    }
+
 
     private void showLog(Object object){
         String message = new String();
