@@ -32,7 +32,7 @@ public class Habitat {
     private static final Image imageOdinaryRabbit = new Image("sample/Images/OdinaryRabbit.png");
 
     // массив кроликов
-    private static ArrayList<Object> collectionRabbit = new ArrayList<Object>();
+    private ArrayList<Object> collectionRabbit = new ArrayList<Object>();
 
     public Habitat(){
     }

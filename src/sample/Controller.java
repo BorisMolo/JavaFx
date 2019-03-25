@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -45,18 +46,21 @@ public class Controller {
     @FXML
     private Pane mainPane;
 
-    @FXML
-    private TextField variationRabbitAlbinos;
 
     @FXML
     private Button pauseButton;
 
-    private Scene mainScene;
+    @FXML
+    private Slider sliderVariationBornRabbitAlbinos;
+
+    @FXML
+    private Slider sliderVariationBornRabbitOdinary;
 
     @FXML
     void initialize(AppManager appManager) {
         try {
             initListeners(appManager);
+            initSliders();
         }
         catch (Exception e ){
             WindowError windowError = new WindowError(e.toString());
@@ -107,6 +111,24 @@ public class Controller {
         });
     }
 
+    private void initSliders(){
+        sliderVariationBornRabbitAlbinos.setMin(0);
+        sliderVariationBornRabbitAlbinos.setMax(100);
+        sliderVariationBornRabbitAlbinos.setBlockIncrement(10);
+        sliderVariationBornRabbitAlbinos.setMajorTickUnit(10);
+        sliderVariationBornRabbitAlbinos.setShowTickLabels(true);
+        sliderVariationBornRabbitAlbinos.setShowTickMarks(true);
+        sliderVariationBornRabbitAlbinos.setValue(50);
+
+        sliderVariationBornRabbitOdinary.setMin(0);
+        sliderVariationBornRabbitOdinary.setMax(100);
+        sliderVariationBornRabbitOdinary.setBlockIncrement(10);
+        sliderVariationBornRabbitOdinary.setMajorTickUnit(10);
+        sliderVariationBornRabbitOdinary.setShowTickLabels(true);
+        sliderVariationBornRabbitOdinary.setShowTickMarks(true);
+        sliderVariationBornRabbitOdinary.setValue(50);
+    }
+
     private boolean isIntegerTextField(TextField textField){
         try{
             Integer.parseInt(textField.getText());
@@ -118,7 +140,7 @@ public class Controller {
         }
     }
 
-    private boolean showDialogError(TextField textField) {
+    private void showDialogError(TextField textField) {
         String erroeMessage;
         if(textField.getId() == timeBornRabbitOdinaty.getId()){
             erroeMessage =
@@ -127,7 +149,6 @@ public class Controller {
                             + "должно быть не пустим и целочисленным";
             WindowError windowError = new WindowError(erroeMessage);
             textField.requestFocus();
-            return false;
         }
         if(textField.getId() == timeBornRabbitAlbinos.getId()){
             erroeMessage =
@@ -136,18 +157,7 @@ public class Controller {
                             + "должно быть не пустим и целочисленным";
             textField.requestFocus();
             WindowError windowError = new WindowError(erroeMessage);
-            return false;
         }
-        if (textField.getId() == variationRabbitAlbinos.getId()){
-            erroeMessage =
-                    "Значание в поле: \n"
-                            + "\"Вероятность рождениякролика Альбиносао\" \n"
-                            + "должно быть не пустим и целочисленным";
-            WindowError windowError = new WindowError(erroeMessage);
-            textField.requestFocus();
-            return false;
-        }
-        return false;
     }
 
     private void writeKeyCode(KeyCode key, AppManager appManager) throws Exception {
@@ -194,8 +204,7 @@ public class Controller {
     private Boolean checkBook(){
         if(
             isIntegerTextField(timeBornRabbitOdinaty) &&
-            isIntegerTextField(timeBornRabbitAlbinos) &&
-            isIntegerTextField(variationRabbitAlbinos)
+            isIntegerTextField(timeBornRabbitAlbinos)
             )
         {
             return true;

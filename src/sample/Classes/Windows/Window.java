@@ -12,7 +12,5 @@ abstract public class Window {
         window.setHeight(200);
         window.setTitle(titleOfWindow);
         window.setResizable(false);
-}
-
-    private void listening(){}
+    }
 }
