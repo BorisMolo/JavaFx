@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
@@ -13,7 +14,7 @@
       <Button fx:id="startButton" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" text="Start" />
       <Button fx:id="stopButton" layoutX="123.0" layoutY="138.0" mnemonicParsing="false" text="Stop" />
       <Label layoutX="5.0" layoutY="163.0" text="Graphics:" />
-      <Label layoutX="15.0" layoutY="94.0" text="Timer:">
+      <Label fx:id="labelTextTIMER" layoutX="15.0" layoutY="94.0" text="Timer:">
          <font>
             <Font size="20.0" />
          </font>
@@ -25,7 +26,7 @@
       </TextField>
       <TextField fx:id="timeBornRabbitOdinaty" layoutX="153.0" layoutY="8.0" prefHeight="11.0" prefWidth="65.0" promptText="N1">
          <font>
-            <Font name="System Bold Italic" size="15.0" />
+            <Font name="System Italic" size="15.0" />
          </font>
       </TextField>
       <TextField fx:id="timeBornRabbitAlbinos" layoutX="153.0" layoutY="52.0" prefHeight="11.0" prefWidth="65.0" promptText="N2">
@@ -36,10 +37,12 @@
       <Pane fx:id="mainPane" layoutX="5.0" layoutY="186.0" prefHeight="400.0" prefWidth="468.0" />
       <Label layoutX="11.0" layoutY="10.0" text="Время рождения &#10;кролика Обыкновенного " />
       <Label layoutX="11.0" layoutY="54.0" text="Время рождения &#10;кролика Альбиноса" />
-      <Label layoutX="234.0" layoutY="48.0" text="Вероятность рождения &#10;кролика Альбиноса" />
+      <Label layoutX="226.0" layoutY="53.0" text="Необходимый процент &#10;от общего числа кроликов&#10;для рождения Альбиноса" />
       <Button fx:id="pauseButton" layoutX="62.0" layoutY="138.0" mnemonicParsing="false" text="Pause" />
-      <Slider fx:id="sliderVariationBornRabbitAlbinos" layoutX="377.0" layoutY="64.0" prefHeight="14.0" prefWidth="201.0" />
+      <Slider fx:id="sliderVariationBornRabbitAlbinos" layoutX="377.0" layoutY="72.0" prefHeight="14.0" prefWidth="201.0" />
       <Label layoutX="231.0" layoutY="5.0" text="Вероятность рождения &#10;кролика Обыкновенного" />
       <Slider fx:id="sliderVariationBornRabbitOdinary" layoutX="377.0" layoutY="21.0" prefHeight="14.0" prefWidth="201.0" />
+      <CheckBox fx:id="checkBoxShowTime" layoutX="226.0" layoutY="116.0" mnemonicParsing="false" text="Показать время симуляции" />
+      <CheckBox fx:id="checkBoxShowDialog" layoutX="226.0" layoutY="142.0" mnemonicParsing="false" text="Показывать диалогое окно" />
    </children>
 </AnchorPane>

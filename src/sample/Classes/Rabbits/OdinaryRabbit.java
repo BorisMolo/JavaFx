@@ -14,9 +14,9 @@ public class OdinaryRabbit extends Rabbit {
 
     public OdinaryRabbit(ImageView _imageView_rabbit, int x, int y){
         super(_imageView_rabbit);
-        this.setPosition(x,y);
+        setPosition(x,y);
         countOdinaryRabbit++;
-        this.typeRabbit = "Odinary Rabbit";
+        typeRabbit = "Odinary Rabbit";
         //Main.controller.getMainPane().getChildren().addAll(this.imageView);
     }
 

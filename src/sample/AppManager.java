@@ -17,16 +17,14 @@ import java.io.IOException;
 
 public class AppManager{
     private Habitat habitat;
-    private boolean showLog = true;
     private Controller controller;
-
 
     private Runnable runnable = new Runnable()
     {
         @Override
         public  void run()
         {
-            if (stateOfTimer == RUNNING)
+            if (stateOfSimulation == RUNNING)
             {
                 while (true) {
                     try {
@@ -53,23 +51,23 @@ public class AppManager{
         }
     };
 
-    private void updateAppPerSecond(){
-        controller.getFieldTime().setText(minutes + ":" +seconds);
-        habitat.update(seconds,controller.getMainPane());
-    }
-
     private int seconds = 0;
     private int minutes = 0;
     private int speedSimulation = 100;
     private Thread thread;
 
-    // The timer has 3 state: Run;Pause;Stop;
+    // The simulation has 3 state: Run;Pause;Stop;
     public static final int  RUNNING = 1;
     public static final int  PAUSE = 2;
     public static final int  STOP = 3;
 
     // default settings
-    private int stateOfTimer = -1;
+    private int stateOfSimulation = -1;
+
+    private void updateAppPerSecond(){
+        controller.getFieldTime().setText(minutes + ":" +seconds);
+        habitat.update(seconds,controller.getMainPane());
+    }
 
     public AppManager(Stage primaryStage) throws Exception {
         initprimaryStage(primaryStage);
@@ -78,7 +76,7 @@ public class AppManager{
 
         controller.initialize(this);
         controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-        disableButtons(stateOfTimer);
+        disableButtons(stateOfSimulation);
     }
 
     private void initprimaryStage(Stage primaryStage) throws IOException {
@@ -94,29 +92,29 @@ public class AppManager{
 
     public void appStart() throws Exception {
         setParametrsBornRabbit();
-        if(stateOfTimer == STOP) {
+        if(stateOfSimulation == STOP) {
             habitat.removeAll();
             controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-        };
+        }
 
-        switch (stateOfTimer){
+        switch (stateOfSimulation){
             case PAUSE:{
-                stateOfTimer = RUNNING;
+                stateOfSimulation = RUNNING;
                 this.thread.resume();
             } break;
             case STOP:{
                 this.seconds = 0;
                 this.minutes = 0;
-                stateOfTimer = RUNNING;
+                stateOfSimulation = RUNNING;
                 this.thread.resume();
             } break;
             default:
-                stateOfTimer = RUNNING;
+                stateOfSimulation = RUNNING;
                 this.thread.start();
                 this.seconds = 0;
                 this.minutes = 0;
         }
-        disableButtons(stateOfTimer);
+        disableButtons(stateOfSimulation);
     }
 
     private void setParametrsBornRabbit(){
@@ -132,20 +130,33 @@ public class AppManager{
     }
 
     public void appPause(){
-        if (stateOfTimer == RUNNING)
+        if (stateOfSimulation == RUNNING)
         {
-            stateOfTimer = PAUSE;
+            stateOfSimulation = PAUSE;
             this.thread.suspend();
         }
-        disableButtons(stateOfTimer);
+        disableButtons(stateOfSimulation);
     }
 
     public void appStop() throws Exception {
-        if (stateOfTimer == RUNNING || stateOfTimer == PAUSE){
-            stateOfTimer = PAUSE;
-            this.thread.suspend();
-            WindowInformation windows = new WindowInformation("Модальеное окно",makeResultLog(),this);
+        if(controller.getValueCheckBoxShowDialog() == true) {
+            WindowInformation windows = new WindowInformation("Модальеное окно", makeResultLog(), this);
+            stateOfSimulation = PAUSE;
+            thread.suspend();
         }
+        else
+        if (stateOfSimulation == RUNNING || stateOfSimulation == PAUSE )
+        {
+            stateOfSimulation = STOP;
+            thread.suspend();
+            removeAllHabitat();
+            disableButtons(stateOfSimulation);
+        }
+    }
+
+    public void removeAllHabitat(){
+        habitat.removeAll();
+        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
     }
 
     private String makeResultLog(){
@@ -184,22 +195,12 @@ public class AppManager{
         }
     }
 
-    public void setShowLog(boolean showLog) {
-        this.showLog = showLog;
-    }
-    public boolean getShowLog(){
-        return this.showLog;
-    }
-
     public int getStateOfTimer() {
-        return stateOfTimer;
+        return stateOfSimulation;
     }
-    public void setStateOfTimer(int _stateOfTimer) {
-        this.stateOfTimer = _stateOfTimer;
+    public void setStateOfTimer(int stateOfSimulation) {
+        this.stateOfSimulation = stateOfSimulation;
     }
 
-    public Habitat getHabitat() {
-        return habitat;
-    }
 }
 

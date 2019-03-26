@@ -69,7 +69,6 @@ public class Habitat {
         int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
         OdinaryRabbit odinaryRabbit = new OdinaryRabbit(imageView,x,y);
         collectionRabbit.add(odinaryRabbit);
-        showLog(odinaryRabbit);
         return odinaryRabbit.getImageView();
     }
 
@@ -89,7 +88,6 @@ public class Habitat {
         int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
         AlbinosRabbit albinosRabbit = new AlbinosRabbit(imageView,x,y);
         collectionRabbit.add(albinosRabbit);
-        showLog(albinosRabbit);
         return albinosRabbit.getImageView();
     }
 
@@ -98,8 +96,6 @@ public class Habitat {
         AlbinosRabbit.countAlbinosRabbit = 0;
         OdinaryRabbit.countOdinaryRabbit = 0;
     }
-
-
 
     public void setN1(int n1) {
         N1 = n1;
@@ -115,7 +111,7 @@ public class Habitat {
     }
 
 
-    private void showLog(Object object){
+    private void showLogConsole(Object object){
         String message = new String();
         if (object instanceof AlbinosRabbit) {
             message = "Create new Rabbit: " + AlbinosRabbit.typeRabbit;

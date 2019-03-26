@@ -1,19 +1,19 @@
 package sample;
 
+//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.TextField;
 import sample.Classes.Windows.WindowError;
 
 
@@ -57,10 +57,23 @@ public class Controller {
     private Slider sliderVariationBornRabbitOdinary;
 
     @FXML
+    private CheckBox checkBoxShowDialog;
+
+    @FXML
+    private CheckBox checkBoxShowTime;
+
+    @FXML
+    private Label labelTextTIMER;
+
+    private Boolean showLog = true;
+
+    @FXML
     void initialize(AppManager appManager) {
         try {
-            initListeners(appManager);
             initSliders();
+            initCheckBoxes();
+            initListeners(appManager);
+            showLog = checkBoxShowTime.isSelected();
         }
         catch (Exception e ){
             WindowError windowError = new WindowError(e.toString());
@@ -70,7 +83,7 @@ public class Controller {
     private void initListeners(AppManager appManager){
         startButton.setOnAction(event ->
         {
-            if (checkBook())
+            if (checkTextBooxsSucces())
             {
                 try {
                     fieldTime.setText("");
@@ -109,6 +122,18 @@ public class Controller {
                 }
             }
         });
+
+        checkBoxShowTime.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            public void changed(ObservableValue ov, Boolean old_val, Boolean new_val) {
+                showTimer();
+            }
+        });
+
+    }
+
+    private void initCheckBoxes(){
+        checkBoxShowTime.setSelected(true);
+        checkBoxShowDialog.setSelected(true);
     }
 
     private void initSliders(){
@@ -161,51 +186,44 @@ public class Controller {
     }
 
     private void writeKeyCode(KeyCode key, AppManager appManager) throws Exception {
-        switch (key) {
-            // Время симуляции должно отображаться текстом в области визуализации
-            // и скрываться/показываться по клавише T
-            case T: {
-                System.out.print("Typed the key: T; ");
-                if(appManager.getShowLog() == false)
-                {
-                    System.out.println("Logs has been activated");
-                    appManager.setShowLog(true);
-                    fieldTime.setVisible(true);
-                }
-                else
-                {
-                    System.out.println("Logs has been diactivated");
-                    appManager.setShowLog(false);
-                    fieldTime.setVisible(false);
-                }
-            }break;
-            //Симуляция должна запускаться по клавише B
-            case B: {
-                System.out.println("Typed the key: B; ");
 
-                if (checkBook())
-                {
-                    try {
-                        fieldTime.setText("");
-                        appManager.appStart();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+        if(key == KeyCode.T) {
+            showTimer();
+        }
+        if (key == KeyCode.B){
+            if (checkTextBooxsSucces() == true)
+            {
+                try {
+                    fieldTime.setText("");
+                    appManager.appStart();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            }break;
-            //останавливаться по клавише E
-            case E: {
-                System.out.println("Typed the key: E; ");
-                appManager.appStop();
-            }break;
+            }
+        }
+        if (key == KeyCode.B){
+            appManager.appStop();
         }
     }
 
-    private Boolean checkBook(){
-        if(
-            isIntegerTextField(timeBornRabbitOdinaty) &&
-            isIntegerTextField(timeBornRabbitAlbinos)
-            )
+    private void showTimer(){
+        if(showLog == false)
+        {
+            showLog = true;
+            fieldTime.setVisible(true);
+            labelTextTIMER.setVisible(true);
+        }
+        else
+        {
+            showLog = false;
+            fieldTime.setVisible(false);
+            labelTextTIMER.setVisible(false);
+        }
+    }
+
+    private Boolean checkTextBooxsSucces(){
+        if( isIntegerTextField(timeBornRabbitOdinaty) &&
+            isIntegerTextField(timeBornRabbitAlbinos))
         {
             return true;
         }
@@ -236,5 +254,13 @@ public class Controller {
 
     public int getValueTimeBornRabbitAlbinos() {
         return Integer.parseInt(timeBornRabbitAlbinos.getText());
+    }
+
+    public Boolean getValueCheckBoxShowDialog() {
+        return checkBoxShowDialog.isSelected();
+    }
+
+    public Boolean getValueCheckBoxShowTime() {
+        return checkBoxShowTime.isSelected();
     }
 }

@@ -36,9 +36,8 @@ public class WindowInformation extends Window {
         okButton.setOnAction(event -> {
             try {
                 appManager.setStateOfTimer(appManager.STOP);
-                appManager.appStop();
-                appManager.getHabitat().removeAll();
-                appManager.disableButtons(appManager.getStateOfTimer());
+                appManager.disableButtons(appManager.STOP);
+                appManager.removeAllHabitat();
                 window.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -47,7 +46,6 @@ public class WindowInformation extends Window {
         window.setOnCloseRequest(event -> {
             try {
                 appManager.appStart();
-                appManager.disableButtons(appManager.getStateOfTimer());
                 window.close();
             } catch (Exception e) {
                 e.printStackTrace();
