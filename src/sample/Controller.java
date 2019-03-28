@@ -238,6 +238,10 @@ public class Controller {
         return mainPane;
     }
 
+    public AnchorPane getMainStage() {
+        return mainStage;
+    }
+
     public int getValueSliderVariationBornRabbitAlbinos() {
         return (int)sliderVariationBornRabbitAlbinos.getValue();
     }

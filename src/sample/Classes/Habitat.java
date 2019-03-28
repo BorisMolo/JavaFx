@@ -35,7 +35,6 @@ public class Habitat {
     private int K2; // проценнт от общего числа кроликов
     // массив кроликов
     private Collections collectionsRabbit;
-   // private ArrayList<Rabbit> rabbitArrayList = new ArrayList<Rabbit>();
 
     public Habitat(){
         collectionsRabbit = new Collections();
@@ -55,7 +54,6 @@ public class Habitat {
             collectionsRabbit.add(albinosRabbit);
             pane.getChildren().addAll(albinosRabbit.getImageView());
         }
-
         collectionsRabbit.updateCollectionsPerTime(pane);
     }
 
@@ -96,6 +94,7 @@ public class Habitat {
         Rabbit.countsAllRabbits = 0;
         AlbinosRabbit.countAlbinosRabbit = 0;
         OdinaryRabbit.countOdinaryRabbit = 0;
+        collectionsRabbit.clear();
     }
 
     public void setN1(int n1) {

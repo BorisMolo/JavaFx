@@ -38,7 +38,7 @@ public class AppManager{
                         // Use runLater to update object PANE
                         Platform.runLater(new Runnable(){
                             @Override
-                            public void run() {
+                            public synchronized void run() {
                                 updateAppPerSecond();
                             }
                         });
@@ -53,7 +53,7 @@ public class AppManager{
 
     private int seconds = 0;
     private int minutes = 0;
-    private int speedSimulation = 500;
+    private int speedSimulation = 700;
     private Thread thread;
 
     // The simulation has 3 state: Run;Pause;Stop;
@@ -83,7 +83,8 @@ public class AppManager{
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = mainLoader.load();
         primaryStage.setTitle("FirstLab");
-        Scene scene = new Scene(root, 600, 600);
+
+        Scene scene = new Scene(root, 600, 720);
         primaryStage.setScene(scene);
         primaryStage.show();
 

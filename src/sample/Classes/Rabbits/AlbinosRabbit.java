@@ -16,4 +16,14 @@ public class AlbinosRabbit extends Rabbit {
         countAlbinosRabbit++;
         typeRabbit = "Albinos Rabbit";
     }
+
+    @Override
+    public void updaTimeLiveRabbit(){
+        this.timeLife--;
+        if (timeLife<=0) {
+            isDead = true;
+            countAlbinosRabbit--;
+            super.dicreementcountsAllRabbits();
+        }
+    }
 }

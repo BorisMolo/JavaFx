@@ -13,4 +13,6 @@ public interface IBehaviour {
     void setY(int y);
     double getX();
     double getY();
+
+    void updaTimeLiveRabbit();
 }

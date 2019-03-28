@@ -5,10 +5,7 @@ import sample.Classes.Rabbits.AlbinosRabbit;
 import sample.Classes.Rabbits.OdinaryRabbit;
 import sample.Classes.Rabbits.Rabbit;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Collections {
     private ArrayList<Rabbit> arrayList;            //Коллекция для хранения объектов
@@ -25,13 +22,6 @@ public class Collections {
         arrayList.add(rabbit);
         treeSet.add(rabbit.getIdentifier());
         hashMap.put(rabbit.getIdentifier(),rabbit.getTimeBorn());
-        /*if (object instanceof OdinaryRabbit){
-            addOdinaryRabbit((OdinaryRabbit)object);
-        }
-
-        if (object instanceof AlbinosRabbit){
-            addAlbinosRabbit((AlbinosRabbit)object);
-        }*/
     }
 
     private void addOdinaryRabbit(OdinaryRabbit odinaryRabbit){
@@ -50,14 +40,6 @@ public class Collections {
         arrayList.remove(rabbit);
         treeSet.remove(rabbit.getIdentifier());
         hashMap.remove(rabbit.getIdentifier(),rabbit.getTimeBorn());
-
-        /*if (object instanceof OdinaryRabbit){
-            deleteOdinaryRabbit((OdinaryRabbit)object);
-        }
-
-        if (object instanceof AlbinosRabbit){
-            deleteAlbinosRabbit((AlbinosRabbit)object);
-        }*/
     }
 
     private void deleteOdinaryRabbit(OdinaryRabbit odinaryRabbit){
@@ -72,37 +54,57 @@ public class Collections {
         hashMap.put(albinosRabbit.getIdentifier(),albinosRabbit.getTimeBorn());
     }
 
-    public synchronized void  updateCollectionsPerTime(Pane pane){
-        Iterator<Rabbit> iterator = arrayList.iterator();
-        System.out.println("Array size is : "+arrayList.size());
-        while (iterator.hasNext()) {
-            Rabbit element = iterator.next();
-            element.updaTimeLiveRabbit();
-            if (element.isDead()){
-                pane.getChildren().remove(element.getImageView());
-                delete(element);
-            }
-            /*Object element = iterator.next();
-            if (element instanceof OdinaryRabbit){
-                OdinaryRabbit newElement = (OdinaryRabbit)element;
-                newElement.updaTimeLiveRabbit();
-                if (newElement.isDead()){
-                    pane.getChildren().remove(newElement.getImageView());
-                    delete(newElement);
-                }
-            }
-            if (element instanceof AlbinosRabbit){
-                AlbinosRabbit newElement = (AlbinosRabbit)element;
-                newElement.updaTimeLiveRabbit();
-                if (newElement.isDead()) {
-                    continue;
-                }
-                pane.getChildren().remove(newElement.getImageView());
-                delete(newElement);
-            }*/
-
-
+    public  void  updateCollectionsPerTime(Pane pane){
+        Iterator<Rabbit> iteratorUpdate = arrayList.iterator();
+        while (iteratorUpdate.hasNext())
+        {
+            Rabbit rabbitUpdate = iteratorUpdate.next();
+            rabbitUpdate.updaTimeLiveRabbit();
         }
+
+        /*
+         *       У меня так и не получилось обойти ошибку ConcurrentModificationException
+         *       Возникает из-за того, что в потоке нельзя УДАЛЯТЬ элемент из КОЛЛЕКЦИИ
+         *       Не смог найти альтернативу, кроме как разбить эту операцию на 2 разных итератора
+         *       Каждый итератор завернут в функцию
+         * */
+
+        while(checkIsAmyRabbitDead()){
+            Rabbit deleRabbit = findDeadRabbit();
+            delete(deleRabbit);
+            pane.getChildren().remove(deleRabbit.getImageView());
+        }
+
+    }
+
+    private boolean checkIsAmyRabbitDead(){
+        Iterator<Rabbit> iteratorDelete = arrayList.listIterator();
+        while (iteratorDelete.hasNext()) {
+            Rabbit element = iteratorDelete.next();
+            if (element.isDead())
+            {
+                return true;
+            }
+        }
+        return  false;
+    }
+
+    private Rabbit findDeadRabbit(){
+        Iterator<Rabbit> iteratorDelete = arrayList.listIterator();
+        while (iteratorDelete.hasNext()) {
+            Rabbit element = iteratorDelete.next();
+            if (element.isDead())
+            {
+                return element;
+            }
+        }
+        return  null; // NEVER RETURN NULL!!
+    }
+
+    public void clear(){
+        arrayList.clear();
+        treeSet.clear();
+        hashMap.clear();
     }
 
 

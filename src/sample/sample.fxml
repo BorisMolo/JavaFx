@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="mainStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Button fx:id="startButton" layoutX="9.0" layoutY="138.0" mnemonicParsing="false" text="Start" />
       <Button fx:id="stopButton" layoutX="123.0" layoutY="138.0" mnemonicParsing="false" text="Stop" />
@@ -34,7 +34,7 @@
             <Font name="System Italic" size="15.0" />
          </font>
       </TextField>
-      <Pane fx:id="mainPane" layoutX="5.0" layoutY="186.0" prefHeight="400.0" prefWidth="468.0" />
+      <Pane fx:id="mainPane" layoutX="5.0" layoutY="306.0" prefHeight="400.0" prefWidth="468.0" />
       <Label layoutX="11.0" layoutY="10.0" text="Время рождения &#10;кролика Обыкновенного " />
       <Label layoutX="11.0" layoutY="54.0" text="Время рождения &#10;кролика Альбиноса" />
       <Label layoutX="226.0" layoutY="53.0" text="Необходимый процент &#10;от общего числа кроликов&#10;для рождения Альбиноса" />

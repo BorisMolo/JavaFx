@@ -21,10 +21,10 @@ public abstract class Rabbit extends Pane implements IBehaviour{
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
     static public int countsAllRabbits = 0;
-    private int identifier = 0;
-    private int timeBorn = 0;
-    private int timeLife = 0;
-    private boolean isDead = false;
+    protected int identifier = 0;
+    protected int timeBorn = 0;
+    protected int timeLife = 0;
+    protected boolean isDead = false;
 
     public Rabbit(ImageView imageView,int timeBorn,int timeLife){
         this.imageView = imageView;
@@ -71,9 +71,8 @@ public abstract class Rabbit extends Pane implements IBehaviour{
         this.setY(y);
     }
 
+    @Override
     public void updaTimeLiveRabbit(){
-        timeLife--;
-        if (timeLife<=0) isDead = true;
     }
 
     public ImageView getImageView(){
@@ -88,11 +87,18 @@ public abstract class Rabbit extends Pane implements IBehaviour{
         return timeBorn;
     }
 
-    public int getTimeLive() {
+    public void setTImeLife(int timeLife){
+        this.timeLife = timeLife;
+    }
+    public int getTimeLife() {
         return timeLife;
     }
 
     public boolean isDead() {
         return isDead;
+    }
+
+    protected void dicreementcountsAllRabbits(){
+        countsAllRabbits--;
     }
 }
