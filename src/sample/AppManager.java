@@ -53,7 +53,7 @@ public class AppManager{
 
     private int seconds = 0;
     private int minutes = 0;
-    private int speedSimulation = 100;
+    private int speedSimulation = 500;
     private Thread thread;
 
     // The simulation has 3 state: Run;Pause;Stop;

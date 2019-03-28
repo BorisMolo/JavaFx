@@ -15,21 +15,31 @@ import javafx.scene.image.ImageView;
 
 // Класс наследуется от Pane, и имеет интерфейс поведения IBehavior
 public abstract class Rabbit extends Pane implements IBehaviour{
+    public static String typeRabbit;
 
-    // объектом является изображение, которое помещается.
-    ImageView imageView;
+    private ImageView imageView;
     public static final int WIDTH = 50;
     public static final int HEIGHT = 50;
     static public int countsAllRabbits = 0;
+    private int identifier = 0;
+    private int timeBorn = 0;
+    private int timeLife = 0;
+    private boolean isDead = false;
 
-    public static String typeRabbit;
-
-    public Rabbit(ImageView _imageView){
-        this.imageView = _imageView;
-        this.imageView.setFitWidth(WIDTH);
-        this.imageView.setFitHeight(HEIGHT);
+    public Rabbit(ImageView imageView,int timeBorn,int timeLife){
+        this.imageView = imageView;
+        this.timeBorn = timeBorn;
+        this.timeLife = timeLife;
+        imageView.setFitWidth(WIDTH);
+        imageView.setFitHeight(HEIGHT);
+        generateIdentifer();
         countsAllRabbits++;
     }
+
+    private void generateIdentifer(){
+        int randomIdentifier = (int)Math.floor(Math.random()*10000);
+        identifier = randomIdentifier;
+    };
 
     @Override
     public void move(int x, int y) {
@@ -61,8 +71,28 @@ public abstract class Rabbit extends Pane implements IBehaviour{
         this.setY(y);
     }
 
+    public void updaTimeLiveRabbit(){
+        timeLife--;
+        if (timeLife<=0) isDead = true;
+    }
+
     public ImageView getImageView(){
         return imageView;
     }
 
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public int getTimeBorn() {
+        return timeBorn;
+    }
+
+    public int getTimeLive() {
+        return timeLife;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
 }

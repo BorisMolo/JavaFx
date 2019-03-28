@@ -1,6 +1,5 @@
 package sample;
 
-//import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +44,6 @@ public class Controller {
 
     @FXML
     private Pane mainPane;
-
 
     @FXML
     private Button pauseButton;
