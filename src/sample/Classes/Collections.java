@@ -24,34 +24,10 @@ public class Collections {
         hashMap.put(rabbit.getIdentifier(),rabbit.getTimeBorn());
     }
 
-    private void addOdinaryRabbit(OdinaryRabbit odinaryRabbit){
-        arrayList.add(odinaryRabbit);
-        treeSet.add(odinaryRabbit.getIdentifier());
-        hashMap.put(odinaryRabbit.getIdentifier(),odinaryRabbit.getTimeBorn());
-    }
-
-    private void addAlbinosRabbit(AlbinosRabbit albinosRabbit){
-        arrayList.add(albinosRabbit);
-        treeSet.add(albinosRabbit.getIdentifier());
-        hashMap.put(albinosRabbit.getIdentifier(),albinosRabbit.getTimeBorn());
-    }
-
     public void delete(Rabbit rabbit){
         arrayList.remove(rabbit);
         treeSet.remove(rabbit.getIdentifier());
         hashMap.remove(rabbit.getIdentifier(),rabbit.getTimeBorn());
-    }
-
-    private void deleteOdinaryRabbit(OdinaryRabbit odinaryRabbit){
-        arrayList.remove(odinaryRabbit);
-        treeSet.remove(odinaryRabbit.getIdentifier());
-        hashMap.remove(odinaryRabbit.getIdentifier(),odinaryRabbit.getTimeBorn());
-    }
-
-    private void deleteAlbinosRabbit(AlbinosRabbit albinosRabbit){
-        arrayList.add(albinosRabbit);
-        treeSet.add(albinosRabbit.getIdentifier());
-        hashMap.put(albinosRabbit.getIdentifier(),albinosRabbit.getTimeBorn());
     }
 
     public  void  updateCollectionsPerTime(Pane pane){
@@ -106,6 +82,5 @@ public class Collections {
         treeSet.clear();
         hashMap.clear();
     }
-
 
 }

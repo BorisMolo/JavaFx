@@ -63,6 +63,12 @@ public class Controller {
     @FXML
     private Label labelTextTIMER;
 
+    @FXML
+    private TextField timeLifeRabbitOdinaty;
+
+    @FXML
+    private TextField timeLifeRabbitAlbinos;
+
     private Boolean showLog = true;
 
     @FXML
@@ -238,9 +244,6 @@ public class Controller {
         return mainPane;
     }
 
-    public AnchorPane getMainStage() {
-        return mainStage;
-    }
 
     public int getValueSliderVariationBornRabbitAlbinos() {
         return (int)sliderVariationBornRabbitAlbinos.getValue();
@@ -255,6 +258,14 @@ public class Controller {
     }
 
     public int getValueTimeBornRabbitAlbinos() {
+        return Integer.parseInt(timeBornRabbitAlbinos.getText());
+    }
+
+    public int getValuetTimeLifeRabbitOdinaty() {
+        return Integer.parseInt(timeLifeRabbitOdinaty.getText());
+    }
+
+    public int getValueTimeLifeRabbitAlbinos() {
         return Integer.parseInt(timeBornRabbitAlbinos.getText());
     }
 

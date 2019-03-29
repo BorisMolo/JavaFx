@@ -12,7 +12,7 @@ public class WindowError extends Window  {
     private Button okButton = new Button("Ок");
 
     public WindowError(String message){
-        super("Ошибка!");
+        super("Error!");
         initActtionsButtons();
         Scene scene = new Scene(createInterfaceWindow(message));
         window.setScene(scene);

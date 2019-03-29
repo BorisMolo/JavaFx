@@ -14,10 +14,10 @@ public class WindowInformation extends Window {
     private Button okButton = new Button("Ок");
     private Button cancelButton = new Button("Отмена");
 
-    public WindowInformation(String titleOfWindow, String mesageTextArea, AppManager appManager) {
+    public WindowInformation(String titleOfWindow, String messageTextArea, AppManager appManager) {
         super(titleOfWindow);
         initActtionsButtons(appManager);
-        Scene scene = new Scene(createInterfaceWindow(mesageTextArea));
+        Scene scene = new Scene(createInterfaceWindow(messageTextArea));
         window.setScene(scene);
         window.show();
     }
@@ -53,8 +53,8 @@ public class WindowInformation extends Window {
         });
 
     }
-    private VBox createInterfaceWindow(String mesageTextArea){
-        TextArea textArea = new TextArea(mesageTextArea);
+    private VBox createInterfaceWindow(String messageTextArea){
+        TextArea textArea = new TextArea(messageTextArea);
         textArea.setPrefColumnCount(15);
         textArea.setPrefRowCount(5);
         textArea.setEditable(false);

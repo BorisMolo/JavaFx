@@ -33,6 +33,9 @@ public class Habitat {
     private int P1; // Вероятность % рождения обыкновенного кролика
     private int N2; // Время рождения альбиноса кролика(каждые N2 секунды)
     private int K2; // проценнт от общего числа кроликов
+    private int timeLifeAlbinosRaabit;
+    private int timeLifeOdinaryRabbit;
+
     // массив кроликов
     private Collections collectionsRabbit;
 
@@ -97,18 +100,16 @@ public class Habitat {
         collectionsRabbit.clear();
     }
 
-    public void setN1(int n1) {
-        N1 = n1;
-    }
-    public void setP1(int p1) {
-        P1 = p1;
-    }
-    public void setN2(int n2) {
-        N2 = n2;
-    }
-    public void setK2(int k2) {
-        K2 = k2;
-    }
+    public void setConditionsBornRabbit(int N1,int P1,int N2,int K2){
+        this.N1 = N1;
+        this.P1 = P1;
+        this.N2 = N2;
+        this.K2 = K2;
+    };
+    public void setConditionsTimeLifeRabbit(int timeLifeAlbinosRaabit,int timeLifeOdinaryRabbit){
+        this.timeLifeAlbinosRaabit = timeLifeAlbinosRaabit;
+        this.timeLifeOdinaryRabbit = timeLifeOdinaryRabbit;
+    };
 
     private void showLogConsole(Object object){
         String message = new String();

@@ -10,7 +10,6 @@ import sample.Classes.Habitat;
 import sample.Classes.Rabbits.AlbinosRabbit;
 import sample.Classes.Rabbits.OdinaryRabbit;
 import sample.Classes.Rabbits.Rabbit;
-import sample.Classes.StopWatch;
 import sample.Classes.Windows.WindowInformation;
 
 import java.io.IOException;
@@ -34,7 +33,7 @@ public class AppManager{
                             minutes++;
                             seconds = 0;
                         }
-                        //TODO: Релизовать синхронизацию ПОТОКОВ!!!
+
                         // Use runLater to update object PANE
                         Platform.runLater(new Runnable(){
                             @Override
@@ -92,7 +91,7 @@ public class AppManager{
     }
 
     public void appStart() throws Exception {
-        setParametrsBornRabbit();
+        setConditionsBornAndDeadRabbit();
         if(stateOfSimulation == STOP) {
             habitat.removeAll();
             controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
@@ -118,16 +117,16 @@ public class AppManager{
         disableButtons(stateOfSimulation);
     }
 
-    private void setParametrsBornRabbit(){
+    private void setConditionsBornAndDeadRabbit(){
         int N1 = controller.getValueTimeBornRabbitOdinaty();
         int P1 = controller.getValueSliderVariationBornRabbitOdinary();
         int N2 = controller.getValueTimeBornRabbitAlbinos();
         int K2 = controller.getValueSliderVariationBornRabbitAlbinos();
+        int timeLifeAlbinosRaabit = controller.getValueTimeLifeRabbitAlbinos();
+        int timeLifeOdinaryRabbit = controller.getValuetTimeLifeRabbitOdinaty();
 
-        habitat.setN1(N1);
-        habitat.setP1(P1);
-        habitat.setN2(N2);
-        habitat.setK2(K2);
+        habitat.setConditionsBornRabbit(N1,P1,N2,K2);
+        habitat.setConditionsTimeLifeRabbit(timeLifeAlbinosRaabit,timeLifeOdinaryRabbit);
     }
 
     public void appPause(){
@@ -139,9 +138,9 @@ public class AppManager{
         disableButtons(stateOfSimulation);
     }
 
-    public void appStop() throws Exception {
+    public void appStop() {
         if(controller.getValueCheckBoxShowDialog() == true) {
-            WindowInformation windows = new WindowInformation("Модальеное окно", makeResultLog(), this);
+            WindowInformation windows = new WindowInformation("Modal Window", makeResultLog(), this);
             stateOfSimulation = PAUSE;
             thread.suspend();
         }
@@ -171,19 +170,19 @@ public class AppManager{
 
     public void disableButtons(int stateOfTimer){
         switch (stateOfTimer) {
-            case StopWatch.RUNNING: {
+            case RUNNING: {
                 controller.getStartButton().setDisable(true);
                 controller.getPauseButton().setDisable(false);
                 controller.getStopButton().setDisable(false);
             }
             break;
-            case StopWatch.PAUSE: {
+            case PAUSE: {
                 controller.getStartButton().setDisable(false);
                 controller.getPauseButton().setDisable(true);
                 controller.getStopButton().setDisable(false);
             }
             break;
-            case StopWatch.STOP: {
+            case STOP: {
                 controller.getStartButton().setDisable(false);
                 controller.getPauseButton().setDisable(true);
                 controller.getStopButton().setDisable(true);
