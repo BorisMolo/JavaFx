@@ -1,7 +1,5 @@
 package sample;
 
-//import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,7 +44,6 @@ public class Controller {
     @FXML
     private Pane mainPane;
 
-
     @FXML
     private Button pauseButton;
 
@@ -64,6 +61,15 @@ public class Controller {
 
     @FXML
     private Label labelTextTIMER;
+
+    @FXML
+    private TextField timeLifeRabbitOdinaty;
+
+    @FXML
+    private TextField timeLifeRabbitAlbinos;
+
+    @FXML
+    private Button showInformationButton;
 
     private Boolean showLog = true;
 
@@ -83,7 +89,7 @@ public class Controller {
     private void initListeners(AppManager appManager){
         startButton.setOnAction(event ->
         {
-            if (checkTextBooxsSucces())
+            if (checkTextBooxsInputValue())
             {
                 try {
                     fieldTime.setText("");
@@ -110,6 +116,10 @@ public class Controller {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        });
+
+        showInformationButton.setOnAction(event -> {
+            appManager.showWindowCollectionsInformatos();
         });
 
         mainStage.setOnKeyPressed(new EventHandler<KeyEvent>(){
@@ -191,7 +201,7 @@ public class Controller {
             showTimer();
         }
         if (key == KeyCode.B){
-            if (checkTextBooxsSucces() == true)
+            if (checkTextBooxsInputValue() == true)
             {
                 try {
                     fieldTime.setText("");
@@ -221,9 +231,12 @@ public class Controller {
         }
     }
 
-    private Boolean checkTextBooxsSucces(){
+    private Boolean checkTextBooxsInputValue(){
         if( isIntegerTextField(timeBornRabbitOdinaty) &&
-            isIntegerTextField(timeBornRabbitAlbinos))
+            isIntegerTextField(timeBornRabbitAlbinos) &&
+            isIntegerTextField(timeLifeRabbitAlbinos) &&
+            isIntegerTextField(timeLifeRabbitOdinaty)
+            )
         {
             return true;
         }
@@ -256,11 +269,23 @@ public class Controller {
         return Integer.parseInt(timeBornRabbitAlbinos.getText());
     }
 
+    public int getValuetTimeLifeRabbitOdinaty() {
+        return Integer.parseInt(timeLifeRabbitOdinaty.getText());
+    }
+
+    public int getValueTimeLifeRabbitAlbinos() {
+        return Integer.parseInt(timeLifeRabbitAlbinos.getText());
+    }
+
     public Boolean getValueCheckBoxShowDialog() {
         return checkBoxShowDialog.isSelected();
     }
 
     public Boolean getValueCheckBoxShowTime() {
         return checkBoxShowTime.isSelected();
+    }
+
+    public AnchorPane getMainStage() {
+        return mainStage;
     }
 }

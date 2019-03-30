@@ -1,7 +1,6 @@
 package sample.Classes.Rabbits;
 
 import javafx.scene.image.ImageView;
-import sample.Main;
 
 /*
 *  Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K% от общего числа кроликов,
@@ -11,16 +10,20 @@ public class AlbinosRabbit extends Rabbit {
 
     public static int countAlbinosRabbit = 0;
 
-    public AlbinosRabbit(ImageView _imageView_rabbit, int x, int y){
-        super(_imageView_rabbit);
+    public AlbinosRabbit(ImageView imageView, int x, int y,int timeBorn, int timeLife){
+        super(imageView,timeBorn,timeLife);
         this.setPosition(x,y);
         countAlbinosRabbit++;
         typeRabbit = "Albinos Rabbit";
     }
 
-    public AlbinosRabbit(ImageView _imageView_rabbit){
-        super(_imageView_rabbit);
-        countAlbinosRabbit++;
-        typeRabbit = "Albinos Rabbit";
+    @Override
+    public void updaTimeLiveRabbit(){
+        this.timeLife--;
+        if (timeLife<0) {
+            isDead = true;
+            countAlbinosRabbit--;
+            super.dicreementcountsAllRabbits();
+        }
     }
 }

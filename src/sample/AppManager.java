@@ -10,7 +10,6 @@ import sample.Classes.Habitat;
 import sample.Classes.Rabbits.AlbinosRabbit;
 import sample.Classes.Rabbits.OdinaryRabbit;
 import sample.Classes.Rabbits.Rabbit;
-import sample.Classes.StopWatch;
 import sample.Classes.Windows.WindowInformation;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ public class AppManager{
         @Override
         public  void run()
         {
-            if (stateOfSimulation == RUNNING)
+            if (stateSimulation == RUNNING)
             {
                 while (true) {
                     try {
@@ -34,11 +33,11 @@ public class AppManager{
                             minutes++;
                             seconds = 0;
                         }
-                        //TODO: Релизовать синхронизацию ПОТОКОВ!!!
+
                         // Use runLater to update object PANE
                         Platform.runLater(new Runnable(){
                             @Override
-                            public void run() {
+                            public synchronized void run() {
                                 updateAppPerSecond();
                             }
                         });
@@ -53,16 +52,16 @@ public class AppManager{
 
     private int seconds = 0;
     private int minutes = 0;
-    private int speedSimulation = 100;
+    private int speedSimulation = 700;
     private Thread thread;
 
-    // The simulation has 3 state: Run;Pause;Stop;
+    // Define state of the simulation
     public static final int  RUNNING = 1;
     public static final int  PAUSE = 2;
     public static final int  STOP = 3;
 
-    // default settings
-    private int stateOfSimulation = -1;
+    // init state
+    private int stateSimulation = -1;
 
     private void updateAppPerSecond(){
         controller.getFieldTime().setText(minutes + ":" +seconds);
@@ -70,92 +69,121 @@ public class AppManager{
     }
 
     public AppManager(Stage primaryStage) throws Exception {
-        initprimaryStage(primaryStage);
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
         thread = new Thread(runnable);
         habitat = new Habitat();
+        initPrimaryStageAndController(primaryStage,mainLoader);
+        disableButtons(stateSimulation);
+    }
 
+    private void initPrimaryStageAndController(Stage primaryStage,FXMLLoader mainLoader) throws IOException {
+        Parent root = mainLoader.load();
+        this.controller = (Controller)mainLoader.getController();
         controller.initialize(this);
         controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-        disableButtons(stateOfSimulation);
-    }
 
-    private void initprimaryStage(Stage primaryStage) throws IOException {
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent root = mainLoader.load();
-        primaryStage.setTitle("FirstLab");
-        Scene scene = new Scene(root, 600, 600);
+        double width = controller.getMainStage().getPrefWidth();
+        double height = controller.getMainStage().getPrefHeight();
+
+        Scene scene = new Scene(root,width,height);
+        primaryStage.setTitle("Lab 3");
+        primaryStage.centerOnScreen();
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        this.controller = (Controller)mainLoader.getController();
     }
 
-    public void appStart() throws Exception {
-        setParametrsBornRabbit();
-        if(stateOfSimulation == STOP) {
-            habitat.removeAll();
-            controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-        }
-
-        switch (stateOfSimulation){
+    public void appStart() {
+        setConditionsBornAndDeadRabbit();
+        switch (stateSimulation){
             case PAUSE:{
-                stateOfSimulation = RUNNING;
+                stateSimulation = RUNNING;
                 this.thread.resume();
             } break;
             case STOP:{
                 this.seconds = 0;
                 this.minutes = 0;
-                stateOfSimulation = RUNNING;
+                stateSimulation = RUNNING;
+                controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
                 this.thread.resume();
             } break;
-            default:
-                stateOfSimulation = RUNNING;
+            default: {
+                stateSimulation = RUNNING;
                 this.thread.start();
                 this.seconds = 0;
                 this.minutes = 0;
+            }
         }
-        disableButtons(stateOfSimulation);
+        disableButtons(stateSimulation);
     }
 
-    private void setParametrsBornRabbit(){
+    private void setConditionsBornAndDeadRabbit(){
         int N1 = controller.getValueTimeBornRabbitOdinaty();
         int P1 = controller.getValueSliderVariationBornRabbitOdinary();
+
         int N2 = controller.getValueTimeBornRabbitAlbinos();
         int K2 = controller.getValueSliderVariationBornRabbitAlbinos();
 
-        habitat.setN1(N1);
-        habitat.setP1(P1);
-        habitat.setN2(N2);
-        habitat.setK2(K2);
+        int timeLifeAlbinosRaabit = controller.getValueTimeLifeRabbitAlbinos();
+        int timeLifeOdinaryRabbit = controller.getValuetTimeLifeRabbitOdinaty();
+
+        habitat.setConditionsBornRabbit(N1,P1,N2,K2);
+        habitat.setConditionsTimeLifeRabbit(timeLifeAlbinosRaabit,timeLifeOdinaryRabbit);
     }
 
     public void appPause(){
-        if (stateOfSimulation == RUNNING)
+        if (stateSimulation == RUNNING)
         {
-            stateOfSimulation = PAUSE;
+            stateSimulation = PAUSE;
             this.thread.suspend();
         }
-        disableButtons(stateOfSimulation);
+        disableButtons(stateSimulation);
     }
 
-    public void appStop() throws Exception {
+    public void appStop() {
         if(controller.getValueCheckBoxShowDialog() == true) {
-            WindowInformation windows = new WindowInformation("Модальеное окно", makeResultLog(), this);
-            stateOfSimulation = PAUSE;
+            WindowInformation windows = new WindowInformation("Modal Window", makeResultLog(), this);
+            stateSimulation = PAUSE;
             thread.suspend();
         }
         else
-        if (stateOfSimulation == RUNNING || stateOfSimulation == PAUSE )
+        if (stateSimulation == RUNNING || stateSimulation == PAUSE )
         {
-            stateOfSimulation = STOP;
+            stateSimulation = STOP;
             thread.suspend();
             removeAllHabitat();
-            disableButtons(stateOfSimulation);
+            disableButtons(stateSimulation);
+        }
+    }
+
+    public void disableButtons(int stateTimer){
+        switch (stateTimer) {
+            case RUNNING: {
+                controller.getStartButton().setDisable(true);
+                controller.getPauseButton().setDisable(false);
+                controller.getStopButton().setDisable(false);
+            }
+            break;
+            case PAUSE: {
+                controller.getStartButton().setDisable(false);
+                controller.getPauseButton().setDisable(true);
+                controller.getStopButton().setDisable(false);
+            }
+            break;
+            case STOP: {
+                controller.getStartButton().setDisable(false);
+                controller.getPauseButton().setDisable(true);
+                controller.getStopButton().setDisable(true);
+            }
+            break;
+            default:
+                controller.getStartButton().setDisable(false);
+                controller.getPauseButton().setDisable(true);
+                controller.getStopButton().setDisable(true);
         }
     }
 
     public void removeAllHabitat(){
-        habitat.removeAll();
+        habitat.clear();
         controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
     }
 
@@ -168,38 +196,23 @@ public class AppManager{
         );
     }
 
-    public void disableButtons(int stateOfTimer){
-        switch (stateOfTimer) {
-            case StopWatch.RUNNING: {
-                controller.getStartButton().setDisable(true);
-                controller.getPauseButton().setDisable(false);
-                controller.getStopButton().setDisable(false);
-            }
-            break;
-            case StopWatch.PAUSE: {
-                controller.getStartButton().setDisable(false);
-                controller.getPauseButton().setDisable(true);
-                controller.getStopButton().setDisable(false);
-            }
-            break;
-            case StopWatch.STOP: {
-                controller.getStartButton().setDisable(false);
-                controller.getPauseButton().setDisable(true);
-                controller.getStopButton().setDisable(true);
-            }
-            break;
-            default:
-                controller.getStartButton().setDisable(false);
-                controller.getPauseButton().setDisable(true);
-                controller.getStopButton().setDisable(true);
-        }
+    public void showWindowCollectionsInformatos(){
+        String message = habitat.getInfoAliveRabbits();
+        WindowInformation windows = new WindowInformation(
+                                                            "Information about collections",
+                                                            500,
+                                                            500,
+                                                            message,
+                                                            this);
+        stateSimulation = PAUSE;
+        thread.suspend();
     }
 
     public int getStateOfTimer() {
-        return stateOfSimulation;
+        return stateSimulation;
     }
     public void setStateOfTimer(int stateOfSimulation) {
-        this.stateOfSimulation = stateOfSimulation;
+        this.stateSimulation = stateOfSimulation;
     }
 
 }

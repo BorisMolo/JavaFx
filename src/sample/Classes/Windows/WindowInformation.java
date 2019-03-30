@@ -14,10 +14,18 @@ public class WindowInformation extends Window {
     private Button okButton = new Button("Ок");
     private Button cancelButton = new Button("Отмена");
 
-    public WindowInformation(String titleOfWindow, String mesageTextArea, AppManager appManager) {
+    public WindowInformation(String titleOfWindow, String messageTextArea, AppManager appManager) {
         super(titleOfWindow);
         initActtionsButtons(appManager);
-        Scene scene = new Scene(createInterfaceWindow(mesageTextArea));
+        Scene scene = new Scene(createInterfaceWindow(messageTextArea));
+        window.setScene(scene);
+        window.show();
+    }
+
+    public WindowInformation(String titleOfWindow, int width,int height, String messageTextArea, AppManager appManager) {
+        super(titleOfWindow,width,height);
+        initActtionsButtons(appManager);
+        Scene scene = new Scene(createInterfaceWindow(messageTextArea));
         window.setScene(scene);
         window.show();
     }
@@ -25,7 +33,6 @@ public class WindowInformation extends Window {
     private void initActtionsButtons(AppManager appManager){
         cancelButton.setOnAction(event -> {
             try {
-                //primeAppController.setStateOfTimer(primeAppController.PAUSE);
                 appManager.appStart();
                 appManager.disableButtons(appManager.getStateOfTimer());
                 window.close();
@@ -53,10 +60,10 @@ public class WindowInformation extends Window {
         });
 
     }
-    private VBox createInterfaceWindow(String mesageTextArea){
-        TextArea textArea = new TextArea(mesageTextArea);
-        textArea.setPrefColumnCount(15);
-        textArea.setPrefRowCount(5);
+    private VBox createInterfaceWindow(String messageTextArea){
+        TextArea textArea = new TextArea(messageTextArea);
+        textArea.setPrefColumnCount(20);
+        textArea.setPrefRowCount(100);
         textArea.setEditable(false);
 
         VBox vBox = new VBox();

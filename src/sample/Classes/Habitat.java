@@ -7,10 +7,7 @@ import javafx.scene.layout.Pane;
 import sample.Classes.Rabbits.AlbinosRabbit;
 import sample.Classes.Rabbits.OdinaryRabbit;
 import sample.Classes.Rabbits.Rabbit;
-import sample.Controller;
-import sample.Main;
 
-import java.awt.*;
 
 /*
 * Создать класс Habitat (среда), определяющий размер рабочей области и хранящий массив объектов,
@@ -18,9 +15,8 @@ import java.awt.*;
 * Предусмотреть в классе метод Update, вызывающийся по таймеру и получающий на вход время, прошедшее от начала симуляции.
 * В данном методе должны генерироваться новые объекты и помещаться в поле визуализации в случайном месте.
 * Визуализация объекта - использовать готовые небольшие картинки;
-
-*
 * */
+
 public class Habitat {
 
     // размер и картинка заднего фона
@@ -36,24 +32,32 @@ public class Habitat {
     private int P1; // Вероятность % рождения обыкновенного кролика
     private int N2; // Время рождения альбиноса кролика(каждые N2 секунды)
     private int K2; // проценнт от общего числа кроликов
+    private int timeLifeAlbinosRaabit;
+    private int timeLifeOdinaryRabbit;
+
     // массив кроликов
-    private ArrayList<Object> collectionRabbit = new ArrayList<Object>();
+    private Collections collectionsRabbit;
 
     public Habitat(){
-    }
-    public Habitat(int N1,int P1,int N2,int K2){
-        this.N1 = N1;
-        this.P1 = P1;
-        this.N2 = N2;
-        this.K2 = K2;
+        collectionsRabbit = new Collections();
     }
 
     public void update(int time, Pane pane) {
-        if (canBornOdinaryRabbit(N1,P1,time))
-            pane.getChildren().addAll(makeOdinaryRabbit());
+        if (canBornOdinaryRabbit(N1,P1,time) == true)
+        {
+            OdinaryRabbit odinaryRabbit = makeOdinaryRabbit(time);
+            collectionsRabbit.add(odinaryRabbit);
+            pane.getChildren().addAll(odinaryRabbit.getImageView());
+        }
 
-        if (canBornAlbinosRabbit(N2,K2,time))
-            pane.getChildren().addAll( makeAlbinosRabbit());
+        if (canBornAlbinosRabbit(N2,K2,time) == true)
+        {
+            AlbinosRabbit albinosRabbit = makeAlbinosRabbit(time);
+            collectionsRabbit.add(albinosRabbit);
+            pane.getChildren().addAll(albinosRabbit.getImageView());
+        }
+
+        collectionsRabbit.updateCollectionsPerTime(pane);
     }
 
     //   Обыкновенные кролики рождаются каждые N1 секунд с вероятностью P1.
@@ -63,16 +67,15 @@ public class Habitat {
         return false;
     }
 
-    private ImageView makeOdinaryRabbit(){
+    private OdinaryRabbit makeOdinaryRabbit(int time){
         ImageView imageView = new ImageView(imageOdinaryRabbit);
         int x = (int)Math.floor(Math.random()*(WIDTH-Rabbit.WIDTH));
         int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
-        OdinaryRabbit odinaryRabbit = new OdinaryRabbit(imageView,x,y);
-        collectionRabbit.add(odinaryRabbit);
-        return odinaryRabbit.getImageView();
+        OdinaryRabbit odinaryRabbit = new OdinaryRabbit(imageView,x,y,time,timeLifeOdinaryRabbit);
+        return odinaryRabbit;
     }
 
-    //    Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K% от общего числа кроликов,
+    //    Альбиносы рождаются каждые N2 секунд, при условии, что их количество менее K % от общего числа кроликов,
     //    в противном случае – не рождаются вовсе.
     private boolean canBornAlbinosRabbit(int N2,int K2,int time){
         if(time % N2 == 0 && Rabbit.countsAllRabbits <= Rabbit.countsAllRabbits * K2)
@@ -82,50 +85,40 @@ public class Habitat {
         return false;
     }
 
-    private ImageView makeAlbinosRabbit(){
+    private AlbinosRabbit makeAlbinosRabbit(int time){
         ImageView imageView = new ImageView(imageAlbinosRabbit);
         int x = (int)Math.floor(Math.random()*(WIDTH-Rabbit.WIDTH));
         int y = (int)Math.floor(Math.random()*(HEIGH-Rabbit.HEIGHT));
-        AlbinosRabbit albinosRabbit = new AlbinosRabbit(imageView,x,y);
-        collectionRabbit.add(albinosRabbit);
-        return albinosRabbit.getImageView();
+        AlbinosRabbit albinosRabbit = new AlbinosRabbit(imageView,x,y,time,timeLifeAlbinosRaabit);
+        return albinosRabbit;
     }
 
-    public void removeAll(){
+    public void clear(){
         Rabbit.countsAllRabbits = 0;
         AlbinosRabbit.countAlbinosRabbit = 0;
         OdinaryRabbit.countOdinaryRabbit = 0;
+        collectionsRabbit.clear();
     }
 
-    public void setN1(int n1) {
-        N1 = n1;
-    }
-    public void setP1(int p1) {
-        P1 = p1;
-    }
-    public void setN2(int n2) {
-        N2 = n2;
-    }
-    public void setK2(int k2) {
-        K2 = k2;
-    }
-
-
-    private void showLogConsole(Object object){
-        String message = new String();
-        if (object instanceof AlbinosRabbit) {
-            message = "Create new Rabbit: " + AlbinosRabbit.typeRabbit;
-        }
-        if (object instanceof OdinaryRabbit) {
-            message = "Create new Rabbit: " + OdinaryRabbit.typeRabbit;
-        }
-        System.out.println(message);
-    }
+    public void setConditionsBornRabbit(int N1,int P1,int N2,int K2){
+        this.N1 = N1;
+        this.P1 = P1;
+        this.N2 = N2;
+        this.K2 = K2;
+    };
+    public void setConditionsTimeLifeRabbit(int timeLifeAlbinosRaabit,int timeLifeOdinaryRabbit){
+        this.timeLifeAlbinosRaabit = timeLifeAlbinosRaabit;
+        this.timeLifeOdinaryRabbit = timeLifeOdinaryRabbit;
+    };
 
     public ImageView getImageViewBackground() {
         ImageView imageViewBackground = new ImageView(imageBackground);
         imageViewBackground.setFitWidth(WIDTH);
         imageViewBackground.setFitHeight(HEIGH);
         return imageViewBackground;
+    }
+
+    public String getInfoAliveRabbits(){
+        return collectionsRabbit.getAliveRabbits();
     }
 }
