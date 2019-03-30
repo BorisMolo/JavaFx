@@ -20,7 +20,7 @@ public class AlbinosRabbit extends Rabbit {
     @Override
     public void updaTimeLiveRabbit(){
         this.timeLife--;
-        if (timeLife<=0) {
+        if (timeLife<0) {
             isDead = true;
             countAlbinosRabbit--;
             super.dicreementcountsAllRabbits();

@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 
 // Класс наследуется от Pane, и имеет интерфейс поведения IBehavior
 public abstract class Rabbit extends Pane implements IBehaviour{
-    public static String typeRabbit;
+    protected String typeRabbit;
 
     private ImageView imageView;
     public static final int WIDTH = 50;
@@ -85,6 +85,10 @@ public abstract class Rabbit extends Pane implements IBehaviour{
 
     public int getTimeBorn() {
         return timeBorn;
+    }
+
+    public String getTypeRabbit() {
+        return typeRabbit;
     }
 
     public void setTImeLife(int timeLife){

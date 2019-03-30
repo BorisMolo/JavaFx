@@ -13,4 +13,12 @@ abstract public class Window {
         window.setTitle(titleOfWindow);
         window.setResizable(false);
     }
+    public Window(String titleOfWindow,int width,int height){
+        window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setWidth(width);
+        window.setHeight(height);
+        window.setTitle(titleOfWindow);
+        window.setResizable(false);
+    }
 }

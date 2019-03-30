@@ -66,10 +66,10 @@ public class Collections {
     }
 
     private Rabbit findDeadRabbit(){
-        Iterator<Rabbit> iteratorDelete = arrayList.listIterator();
+        Iterator<Rabbit> iteratorDelete = arrayList.iterator();
         while (iteratorDelete.hasNext()) {
             Rabbit element = iteratorDelete.next();
-            if (element.isDead())
+            if (element.isDead() == true)
             {
                 return element;
             }
@@ -83,4 +83,22 @@ public class Collections {
         hashMap.clear();
     }
 
+    public  String getAliveRabbits(){
+        String resultString = new String();
+        Iterator<Rabbit> iteratorDelete = arrayList.listIterator();
+        int count = 0;
+        while (iteratorDelete.hasNext()) {
+            Rabbit element = iteratorDelete.next();
+            count++;
+            if (element.isDead() == false)
+            {
+                resultString += String.valueOf(count) + ". " +
+                                "Type: "+element.getTypeRabbit() +
+                                "; TimeBorn: "+ String.valueOf(element.getTimeBorn()) +
+                                "; Id: "+ String.valueOf(element.getIdentifier()) + "\n" ;
+            }
+        }
+
+        return resultString;
+    }
 }

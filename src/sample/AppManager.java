@@ -23,7 +23,7 @@ public class AppManager{
         @Override
         public  void run()
         {
-            if (stateOfSimulation == RUNNING)
+            if (stateSimulation == RUNNING)
             {
                 while (true) {
                     try {
@@ -55,13 +55,13 @@ public class AppManager{
     private int speedSimulation = 700;
     private Thread thread;
 
-    // The simulation has 3 state: Run;Pause;Stop;
+    // Define state of the simulation
     public static final int  RUNNING = 1;
     public static final int  PAUSE = 2;
     public static final int  STOP = 3;
 
-    // default settings
-    private int stateOfSimulation = -1;
+    // init state
+    private int stateSimulation = -1;
 
     private void updateAppPerSecond(){
         controller.getFieldTime().setText(minutes + ":" +seconds);
@@ -69,59 +69,60 @@ public class AppManager{
     }
 
     public AppManager(Stage primaryStage) throws Exception {
-        initprimaryStage(primaryStage);
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
         thread = new Thread(runnable);
         habitat = new Habitat();
+        initPrimaryStageAndController(primaryStage,mainLoader);
+        disableButtons(stateSimulation);
+    }
 
+    private void initPrimaryStageAndController(Stage primaryStage,FXMLLoader mainLoader) throws IOException {
+        Parent root = mainLoader.load();
+        this.controller = (Controller)mainLoader.getController();
         controller.initialize(this);
         controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-        disableButtons(stateOfSimulation);
-    }
 
-    private void initprimaryStage(Stage primaryStage) throws IOException {
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        Parent root = mainLoader.load();
-        primaryStage.setTitle("FirstLab");
+        double width = controller.getMainStage().getPrefWidth();
+        double height = controller.getMainStage().getPrefHeight();
 
-        Scene scene = new Scene(root, 600, 720);
+        Scene scene = new Scene(root,width,height);
+        primaryStage.setTitle("Lab 3");
+        primaryStage.centerOnScreen();
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        this.controller = (Controller)mainLoader.getController();
     }
 
-    public void appStart() throws Exception {
+    public void appStart() {
         setConditionsBornAndDeadRabbit();
-        if(stateOfSimulation == STOP) {
-            habitat.removeAll();
-            controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-        }
-
-        switch (stateOfSimulation){
+        switch (stateSimulation){
             case PAUSE:{
-                stateOfSimulation = RUNNING;
+                stateSimulation = RUNNING;
                 this.thread.resume();
             } break;
             case STOP:{
                 this.seconds = 0;
                 this.minutes = 0;
-                stateOfSimulation = RUNNING;
+                stateSimulation = RUNNING;
+                controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
                 this.thread.resume();
             } break;
-            default:
-                stateOfSimulation = RUNNING;
+            default: {
+                stateSimulation = RUNNING;
                 this.thread.start();
                 this.seconds = 0;
                 this.minutes = 0;
+            }
         }
-        disableButtons(stateOfSimulation);
+        disableButtons(stateSimulation);
     }
 
     private void setConditionsBornAndDeadRabbit(){
         int N1 = controller.getValueTimeBornRabbitOdinaty();
         int P1 = controller.getValueSliderVariationBornRabbitOdinary();
+
         int N2 = controller.getValueTimeBornRabbitAlbinos();
         int K2 = controller.getValueSliderVariationBornRabbitAlbinos();
+
         int timeLifeAlbinosRaabit = controller.getValueTimeLifeRabbitAlbinos();
         int timeLifeOdinaryRabbit = controller.getValuetTimeLifeRabbitOdinaty();
 
@@ -130,46 +131,32 @@ public class AppManager{
     }
 
     public void appPause(){
-        if (stateOfSimulation == RUNNING)
+        if (stateSimulation == RUNNING)
         {
-            stateOfSimulation = PAUSE;
+            stateSimulation = PAUSE;
             this.thread.suspend();
         }
-        disableButtons(stateOfSimulation);
+        disableButtons(stateSimulation);
     }
 
     public void appStop() {
         if(controller.getValueCheckBoxShowDialog() == true) {
             WindowInformation windows = new WindowInformation("Modal Window", makeResultLog(), this);
-            stateOfSimulation = PAUSE;
+            stateSimulation = PAUSE;
             thread.suspend();
         }
         else
-        if (stateOfSimulation == RUNNING || stateOfSimulation == PAUSE )
+        if (stateSimulation == RUNNING || stateSimulation == PAUSE )
         {
-            stateOfSimulation = STOP;
+            stateSimulation = STOP;
             thread.suspend();
             removeAllHabitat();
-            disableButtons(stateOfSimulation);
+            disableButtons(stateSimulation);
         }
     }
 
-    public void removeAllHabitat(){
-        habitat.removeAll();
-        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
-    }
-
-    private String makeResultLog(){
-        return new String(
-                "Total Rabbits: " + Rabbit.countsAllRabbits +
-                        ";"+ '\n' +"Odinary Rabbits: " + OdinaryRabbit.countOdinaryRabbit +
-                        ";"+ '\n' +"ALbinos Rabbits: " + AlbinosRabbit.countAlbinosRabbit +
-                        ";"+ '\n' +"Time of simulation Min:" + this.minutes + " Sec: " +this.seconds
-        );
-    }
-
-    public void disableButtons(int stateOfTimer){
-        switch (stateOfTimer) {
+    public void disableButtons(int stateTimer){
+        switch (stateTimer) {
             case RUNNING: {
                 controller.getStartButton().setDisable(true);
                 controller.getPauseButton().setDisable(false);
@@ -195,11 +182,37 @@ public class AppManager{
         }
     }
 
+    public void removeAllHabitat(){
+        habitat.clear();
+        controller.getMainPane().getChildren().addAll(habitat.getImageViewBackground());
+    }
+
+    private String makeResultLog(){
+        return new String(
+                "Total Rabbits: " + Rabbit.countsAllRabbits +
+                        ";"+ '\n' +"Odinary Rabbits: " + OdinaryRabbit.countOdinaryRabbit +
+                        ";"+ '\n' +"ALbinos Rabbits: " + AlbinosRabbit.countAlbinosRabbit +
+                        ";"+ '\n' +"Time of simulation Min:" + this.minutes + " Sec: " +this.seconds
+        );
+    }
+
+    public void showWindowCollectionsInformatos(){
+        String message = habitat.getInfoAliveRabbits();
+        WindowInformation windows = new WindowInformation(
+                                                            "Information about collections",
+                                                            500,
+                                                            500,
+                                                            message,
+                                                            this);
+        stateSimulation = PAUSE;
+        thread.suspend();
+    }
+
     public int getStateOfTimer() {
-        return stateOfSimulation;
+        return stateSimulation;
     }
     public void setStateOfTimer(int stateOfSimulation) {
-        this.stateOfSimulation = stateOfSimulation;
+        this.stateSimulation = stateOfSimulation;
     }
 
 }
